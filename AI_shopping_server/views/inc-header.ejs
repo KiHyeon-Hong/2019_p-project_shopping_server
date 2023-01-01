@@ -1,0 +1,522 @@
+<%
+// 여기서 필요한게 유저 타입에 따라 GNB를 바꿔 보여줘야한다.
+// 관리자0 판매자1 구매자2 비로그인4
+
+let flag = '4'
+let view_name;  // 마이페이지 이름 보여주는 변수
+
+// 세션이 없거나 길이가 0이면 비로그인 상태
+if(typeof userAuth == 'undefined' || userAuth.length == 0){
+  // console.log('비로그인자')
+}
+
+// 아니면 로그인 상태
+else{
+  let auth = userAuth;
+
+  flag = auth;
+  view_name = userName + '님'
+}
+
+var str_section = ["봄","여름","가을","겨울"] // 대분류 명
+%>
+
+<style>
+  .header__area.header__absolute {
+    background: rgba(255, 255, 255, 0.8)
+  }
+
+  .sticky__header.is-sticky{
+      background: rgba(0, 0, 0, 0.8)
+  }
+  .sticky__header.is-sticky li a{
+      color:white
+  }
+  div.logo{
+    z-index: 99 !important
+  }
+</style>
+
+<%
+switch (flag.toString()) {
+  case '0': //관리자
+  %>
+
+  <!-- Header -->
+  <header id="wn__header" class="header__area header__absolute sticky__header">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                  <div class="logo">
+                      <a href="/">
+                          <img src="/images/logo/logo.png" alt="logo images" style=" max-width: 176px; ">
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-8 d-none d-lg-block">
+                  <nav class="mainmenu__nav">
+                      <ul class="meninmenu d-flex justify-content-start">
+                            <li class="drop"><a href="#">메뉴</a>
+									<div class="megamenu mega03">
+                                        <ul class="item item03">
+                         
+                                            
+											<li class="title">쇼핑몰 관리</li>
+											<li><a href="/src/admin/mainPageManagement">메인화면 관리</a></li>
+											<li><a href="/src/admin/productManagement">상품등록 관리</a></li>
+											<li><a href="/src/admin/salesManagement">매출 관리</a></li>
+											<li><a href="/src/admin/marketing">마케팅 관리</a></li>
+										</ul>
+										<ul class="item item03">
+											<li class="title">사용자 관리</li>
+											<li><a href="/src/admin/sellerManagement">판매자 관리</a></li>
+											<li><a href="/src/admin/userManagement">구매자 관리</a></li>
+											<li><a href="/src/admin/productList">사용자 리뷰 관리</a></li>
+											
+										</ul>
+										<ul class="item item03">
+											<li class="title">AI 관리</li>
+											<li><a href="/src/admin/imageSearchManagement">이미지 검색 관리</a></li>
+											<li><a href="/src/admin/keywordManagement">추천 키워드 관리</a></li>
+										
+										</ul>
+									</div>
+                                </li>
+                                <li>
+                                    <!-- <a href="/src/buyer/index">사용자 화면가기</a> -->
+                                </li>
+                      </ul>
+                  </nav>
+              </div>
+              <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                  <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+
+
+
+
+
+                      <li class="setting__bar__icon"><a class="setting__active" href="#" style="
+                        filter: opacity(0.9) drop-shadow(0 0 0 blue);
+                    "></a>
+                          <div class="searchbar__content setting__block">
+                              <div class="content-inner">
+
+                                    <div class="switcher-currency">
+                                        <strong>
+                                            <span><%= view_name %></span>
+                                        </strong>
+                                        <strong class="label switcher-label" style="margin-top: 10px;">
+                                            <span>계정</span>
+                                        </strong>
+                                        <div class="switcher-options">
+                                            <div class="switcher-currency-trigger">
+                                                <div class="setting__menu">
+                                                    <span><a href="/src/userManagement/adminInfoChange">비밀번호 변경</a></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                        <a href="/src/userManagement/logout">sign out</a>
+                      </li>
+
+                  </ul>
+              </div>
+          </div>
+          <!-- Start Mobile Menu -->
+          <div class="row d-none">
+              <div class="col-lg-12 d-none">
+                  <nav class="mobilemenu__nav">
+                        <ul class="item item03">
+                         
+                                            
+                         <li class="title">쇼핑몰 관리</li>
+                         <li><a href="/src/admin/mainPageManagement">메인화면 관리</a></li>
+                         <li><a href="/src/admin/productManagement">상품등록 관리</a></li>
+                         <li><a href="/src/admin/salesManagement">매출 관리</a></li>
+                         <li><a href="/src/admin/marketing">마케팅 관리</a></li>
+                     </ul>
+                     <ul class="item item03">
+                         <li class="title">사용자 관리</li>
+                         <li><a href="/src/admin/sellerManagement">판매자 관리</a></li>
+                         <li><a href="/src/admin/userManagement">구매자 관리</a></li>
+                         <li><a href="/src/admin/productList">사용자 리뷰 관리</a></li>
+                         
+                     </ul>
+                     <ul class="item item03">
+                         <li class="title">AI 관리</li>
+                         <li><a href="/src/admin/imageSearchManagement">이미지 검색 관리</a></li>
+                         <li><a href="/src/admin/keywordManagement">추천 키워드 관리</a></li>
+                     </ul>
+                  </nav>
+              </div>
+          </div>
+          <!-- End Mobile Menu -->
+          <div class="mobile-menu d-block d-lg-none">
+          </div>
+          <!-- Mobile Menu -->
+      </div>
+  </header>
+  <!-- //Header -->
+
+
+  <%
+    break;
+  case '2': //판매자
+  %>
+
+
+  <!-- Header -->
+  <header id="wn__header" class="header__area header__absolute sticky__header">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                  <div class="logo">
+                      <a href="/">
+                          <img src="/images/logo/logo.png" alt="logo images" style=" max-width: 176px; ">
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-8 d-none d-lg-block">
+                  <nav class="mainmenu__nav">
+                      <ul class="meninmenu d-flex justify-content-start">
+
+                            <li class="drop with--one--item"><a href="/src/buyer/search/category?category=<%=str_section[0]%>"> <%=str_section[0]%> </a></li>
+                            <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[1]%>"><%=str_section[1]%></a></li>
+                            <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[2]%>"><%=str_section[2]%></a></li>
+                            <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[3]%>"><%=str_section[3]%></a></li>
+                      </ul>
+                  </nav>
+              </div>
+              <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                  <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+
+                    <li title="상품 관리">
+                        <a href="/src/productManagement/productList"><i class="fas fa-tasks " aria-hidden="true"></i></a>
+
+                    </li>
+                    <li title="새 상품 등록">
+                        <a href="/src/productManagement/register"><i class="fas fa-plus" aria-hidden="true"></i></a>
+
+                    </li>
+                    <li title="일일 매출 보기">
+                        <a href="/src/salesManagement/daySell?userNum=<%=userNum%>"><i class="fas fa-chart-line " aria-hidden="true"></i></a>
+
+                    </li>
+
+                      <li class="shop_search"><a class="search__active" href="#"></a>
+
+                      </li>
+
+
+
+                      <li class="setting__bar__icon">
+                          
+                          <a class="setting__active" href="#" style="
+                        filter: opacity(0.9) drop-shadow(0 0 0 blue);
+                    "></a>
+                          <div class="searchbar__content setting__block">
+                              <div class="content-inner">
+
+                                    <div class="switcher-currency">
+                                        <strong>
+                                            <span><%= view_name %></span>
+                                        </strong>
+                                        <strong class="label switcher-label" style="margin-top: 10px;">
+                                            <span>계정</span>
+                                        </strong>
+                                        <div class="switcher-options">
+                                            <div class="switcher-currency-trigger">
+                                                <div class="setting__menu">
+                                                    <span><a href="/src/userManagement/infoChange">정보 수정</a></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                      <div class="switcher-currency mt-3">
+                                          <strong class="label switcher-label">
+                                              <span>마이 페이지</span>
+                                          </strong>
+                                          <div class="switcher-options">
+                                              <div class="switcher-currency-trigger">
+
+                                                  <div class="setting__menu">
+                                                    <span><a href="/src/salesManagement/daySell?userNum=<%=userNum%>">일일 매출 현황 보기</a></span>
+
+                                                  </div>
+                                                  <div class="setting__menu">
+                                                      <span><a href="/src/productManagement/productList">상품 관리</a></span>
+                                                  </div>
+                                               
+                                              </div>
+                                          </div>
+                                      </div>
+                              </div>
+                          </div>
+                      </li>
+                      <li><a href="/src/userManagement/logout">sign out</a></li>
+
+                  </ul>
+              </div>
+          </div>
+          <!-- Start Mobile Menu -->
+          <div class="row d-none">
+                <div class="col-lg-12 d-none">
+                    <nav class="mobilemenu__nav">
+                        <ul class="meninmenu">
+                            <li><a href="/">Home</a></li>
+                                    <%
+                                    for(var i=0;i<str_section.length;i++){
+                                    %>
+                                    <li><a href="/src/buyer/search/category?category=<%=str_section[i]%>"><%=str_section[i]%></a></li>
+                                    <%}%>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+          <!-- End Mobile Menu -->
+          <div class="mobile-menu d-block d-lg-none">
+          </div>
+          <!-- Mobile Menu -->
+      </div>
+  </header>
+  <!-- //Header -->
+
+  <%
+    break;
+  case '1': //구매자
+  %>
+
+
+    <!-- Header -->
+    <header id="wn__header" class="header__area header__absolute sticky__header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/images/logo/logo.png" alt="logo images" style=" max-width: 176px; ">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8 d-none d-lg-block">
+                    <nav class="mainmenu__nav">
+                        <ul class="meninmenu d-flex justify-content-start">
+
+                              <li class="drop with--one--item"><a href="/src/buyer/search/category?category=<%=str_section[0]%>"> <%=str_section[0]%> </a></li>
+                              <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[1]%>"><%=str_section[1]%></a></li>
+                              <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[2]%>"><%=str_section[2]%></a></li>
+                            <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[3]%>"><%=str_section[3]%></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                    <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+                        <li class="shop_search"><a class="search__active" href="#"></a>
+
+                        </li>
+
+                        <li class="shopcart"><a href="/src/buyer/basket/index">
+                          <!-- <span class="product_qun"></span> -->
+                        </a>
+                            <%
+                            //include inc-head-cart %>
+                        </li>
+
+
+                        <li class="setting__bar__icon"><a class="setting__active" href="#" style="
+                            filter: opacity(0.9) drop-shadow(0 0 0 blue);
+                        "></a>
+                            <div class="searchbar__content setting__block">
+                                <div class="content-inner">
+
+                                      <div class="switcher-currency">
+                                          <strong>
+                                              <span><%= view_name %></span>
+                                          </strong>
+                                          <strong class="label switcher-label" style="margin-top: 10px;">
+                                              <span>계정</span>
+                                          </strong>
+                                          <div class="switcher-options">
+                                              <div class="switcher-currency-trigger">
+                                                  <div class="setting__menu">
+                                                      <span><a href="/src/userManagement/infoChange">정보 수정</a></span>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+                                      </div>
+
+
+                                        <div class="switcher-currency mt-3">
+                                            <strong class="label switcher-label">
+                                                <span>마이 페이지</span>
+                                            </strong>
+                                            <div class="switcher-options">
+                                                <div class="switcher-currency-trigger">
+
+                                                    <div class="setting__menu">
+                                                        <span><a href="/src/buyer/buyList">구매 내역</a></span>
+                                                    </div>
+                                                    <div class="setting__menu">
+                                                      <span><a href="/src/buyer/basket/index">장바구니</a></span>
+                                                    </div>
+                                                    <div class="setting__menu">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="/src/userManagement/logout">sign out</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- Start Mobile Menu -->
+            <div class="row d-none">
+                <div class="col-lg-12 d-none">
+                    <nav class="mobilemenu__nav">
+                        <ul class="meninmenu">
+                            <li><a href="/">Home</a></li>
+                                    <%
+                                    for(var i=0;i<str_section.length;i++){
+                                    %>
+                                    <li><a href="/src/buyer/search/category?category=<%=str_section[i]%>"><%=str_section[i]%></a></li>
+                                    <%}%>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu -->
+            <div class="mobile-menu d-block d-lg-none">
+            </div>
+            <!-- Mobile Menu -->
+        </div>
+    </header>
+    <!-- //Header -->
+
+  <%
+    break;
+  default:
+  %>
+
+
+    <!-- Header -->
+    <header id="wn__header" class="header__area header__absolute sticky__header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/images/logo/logo.png" alt="logo images" style=" max-width: 176px; ">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8 d-none d-lg-block">
+                    <nav class="mainmenu__nav">
+                        <ul class="meninmenu d-flex justify-content-start">
+
+                                <li class="drop with--one--item"><a href="/src/buyer/search/category?category=<%=str_section[0]%>"> <%=str_section[0]%> </a></li>
+                                <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[1]%>"><%=str_section[1]%></a></li>
+                                <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[2]%>"><%=str_section[2]%></a></li>
+                            <li class="drop"><a href="/src/buyer/search/category?category=<%=str_section[3]%>"><%=str_section[3]%></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                    <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+                        <li class="shop_search"><a class="search__active" href="#"></a>
+
+                        </li>
+
+                        <li><a href="/src/userManagement/register">sign up</a></li>
+                        <li><a href="/src/userManagement/login">sign in</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Start Mobile Menu -->
+            <div class="row d-none">
+                <div class="col-lg-12 d-none">
+                    <nav class="mobilemenu__nav">
+                        <ul class="meninmenu">
+                            <li><a href="/">Home</a></li>
+                                    <%
+                                    for(var i=0;i<str_section.length;i++){
+                                    %>
+                                    <li><a href="/src/buyer/search/category?category=<%=str_section[i]%>"><%=str_section[i]%></a></li>
+                                    <%}%>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu -->
+            <div class="mobile-menu d-block d-lg-none">
+            </div>
+            <!-- Mobile Menu -->
+        </div>
+    </header>
+    <!-- //Header -->
+
+  <%
+}
+%>
+
+
+
+<!-- Start Search Popup -->
+<div class="brown--color box-search-content search_active block-bg close__top">
+    <form name="form1" id="search_mini_form" class="minisearch" action="/src/buyer/search/keyword">
+        <div style=" margin-top: 10%; ">
+            <div style="color:wheat">
+                <img src="/images/logo/logo.png ">
+            </div>
+            </div>
+        <div class="field__search">
+            
+
+            <input type="text" name="keyword" placeholder="찾고싶은 상품명을 입력해주세요">
+            <div class="action">
+                <a href="/src/buyer/search/image"><i class="far fa-image"></i></a>
+                <a href="javascript:submit()"><i class="zmdi zmdi-search"></i></a>
+                <script>
+                    function submit(){
+                        console.log(document.form1)
+                        document.form1.submit()
+                    }
+                </script>
+
+            </div>
+            
+            <div>
+                <p style="background: rgba(0,0,0,0);color: white;font-family: 'Source Sans Pro', Helvetica, sans-serif;text-align: left;">
+                -- PIS 검색 기능 --<br>
+                 <b>대분류 검색</b> : 봄,여름,가을,겨울 대분류로 검색해드립니다.<br>
+                 <br>
+                 <b>키워드 검색</b> : 빅데이터 기반의 인기상품 추천 및 국내 탑 쇼핑몰의 <br>
+                쇼핑 패턴을 분석하여 고객님들께 인기상품을 추천해 드립니다.<br>
+                <br>
+                 <b>이미지 검색</b> : 키워드를 까먹어서 검색하기 어려우셨던적 있으신가요?<br>
+                저희 PIS에서는 인공지능 이미지 인식 기능을 사용하여<br>
+                고객님의 상품을 검색해드립니다.<br>
+                </p>
+            </div>
+        </div>
+    </form>
+    <div class="close__wrap">
+        <span>닫기</span>
+    </div>
+</div>
+<!-- End Search Popup -->
+
+

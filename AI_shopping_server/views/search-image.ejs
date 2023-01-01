@@ -1,0 +1,213 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body class="bg--black">
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<!-- Start main Content -->
+		<div class="maincontent  pt--80 pb--55">
+			<div class="close__wrap" style=" color: white; position: absolute; right: 150px; ">
+
+				<style>
+					#zz {
+						color: white
+					}
+
+					#zz:hover {
+						color: #e59285
+					}
+				</style>
+				<a id="zz" href="javascript:back()"><span style=" margin: 5px; ">CLOSE </span><i
+						class="fas fa-times-circle"></i></a>
+				<br>
+				<br>
+				<br>
+				<a id="zz" href="/"><span style=" margin: 5px; ">HOME </span><i class="fas fa-home"></i></a>
+				<script>
+					function back() {
+						history.back();
+					}
+				</script>
+			</div>
+			<div class="container">
+				<div class="row" style=" justify-content: center; ">
+					<!-- //이미지와 로딩창 겹치기 -->
+
+					<div class="col-9" style="text-align: -webkit-center;">
+
+						<form id="search_mini_form" class="minisearch" action="#">
+
+							<img id="img1" src="/images/image_upload.png" width="400px"  />
+							<input id="input_img" type="file" name="search" style="display:none" />
+							<div>
+								<p style=" color: gainsboro; ">
+									<br>
+									찾고자하는 상품의 이미지를 업로드 해주세요!
+									<br>
+									그러면 AI가 찾아줍니다. 
+									<br>
+									<br>
+								</p>
+							</div>
+						</form>
+
+						<div class="spinner-grow" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<script type="text/javascript">
+
+							var sel_file;
+
+							$(document).ready(function () {
+								$('#img1').click(function (e) {
+									e.preventDefault();
+									$('#input_img').click();
+								});
+
+
+								$("#input_img").on("change", handleImgFileSelect);
+							});
+
+
+							function handleImgFileSelect(e) {
+								var files = e.target.files;
+								var filesArr = Array.prototype.slice.call(files);
+
+								filesArr.forEach(function (f) {
+									if (!f.type.match("image.*")) {
+										alert("확장자는 이미지 확장자만 가능합니다.");
+										return;
+									}
+
+									sel_file = f;
+
+									var reader = new FileReader();
+									reader.onload = function (e) {
+										$("#img1").attr("src", e.target.result);
+									}
+									reader.readAsDataURL(f);
+									upload()
+								});
+							}
+						</script>
+						<script>
+							function upload() {
+								// 에이젝스로 이미지 전송하기.
+								console.log($('#search_mini_form')[0])
+								// sendAjax('/src/productManagement/imageFiltering/sungjae', $('#findpw')[0]);
+								test('/src/buyer/search/image', $('#search_mini_form')[0]);
+							}
+						</script>
+
+						<script>
+							function test(url, form) {
+								var formData = new FormData(form);
+								// 로딩창 뛰우기
+								onloading();
+
+								$.ajax({
+									url: url,
+									processData: false,
+									contentType: false,
+									data: formData,
+									type: 'POST',
+									timeout: 10000,
+									success: function (result) {
+										switch (result.result) {
+											case 'ok':
+												hello = result.resultv;
+												offloading(result.resultv, makeRandom(90, 99));
+												console.log(result.resultv)
+											default:
+										}
+										// 로딩창 끄기
+									}
+								});
+							}
+							function makeRandom(min, max) {
+								var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
+								return RandVal;
+							}
+
+							function onloading() {
+								$('.tocart').click();
+								$('.result')[0].innerHTML = "<img src='/images/loading img.gif'><br><p>이미지 검색중...</p>";
+								$('.modal-footer')[0].style.display = 'none'
+								modaltitle.innerHTML = "검색중..."
+							}
+
+							function offloading(msg, score) {
+								var substring = "error";
+								if (msg.indexOf(substring) != -1) {
+									chserror();
+									return
+								}
+
+								$('.result')[0].innerHTML = "<h2 id='kyakya'>" + msg + '</h2>'
+								$('.result')[0].innerHTML += 'AI가 이미지를 인식한 결과 ' + score + '%의 정확도로 ' + msg + '를 도출하였습니다.'
+
+								modaltitle.innerHTML = "원하시던 결과가 맞습니까?"
+
+								$('.modal-footer')[0].style.display = ''
+								// $('.close').click();
+							}
+
+							function chserror() {
+								$('.result')[0].innerHTML = "<h2 id='kyakya'></h2>"
+								$('.result')[0].innerHTML += 'AI가 이미지로부터 키워드를 도출하지 못했습니다.'
+
+								modaltitle.innerHTML = "AI : 죄송합니다"
+
+								$('.modal-footer')[0].style.display = ''
+							}
+						</script>
+					</div>
+				</div>
+			</div>
+
+
+			<button class="btn btn-default tocart" data-target="#layerpop" data-toggle="modal" type="button"
+				style="display: none;">modal button</button>
+
+			<!-- 모달 -->
+			<div class="modal fade" id="layerpop">
+				<div class="modal-dialog">
+					<div class="modal-content" style="
+						  background-color: rgba(255,255,255,0.95);
+					  ">
+						<!-- header -->
+						<div class="modal-header">
+							<h4 id="modaltitle">hi</h4>
+							<!-- 닫기(x) 버튼 -->
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<!-- header title -->
+							<h4 class="modal-title"></h4>
+						</div>
+						<!-- body -->
+						<div class="modal-body result">
+							<h2 id="kyakya">aaaa</h2>
+							<img src="/images/loading img.gif">
+							<br>
+							<p>이미지 검색중...</p>
+						</div>
+						<!-- Footer -->
+						<div class="modal-footer" style="display: none;">
+							<button style=" width: 100px; " type="button" class="btn btn-primary"
+								onclick="location.href = '/src/buyer/search/image/result?keyword='+hello ">네</button>
+							<button style=" width: 100px; " type="button" class="btn btn-default"
+								onclick="location.href = '/src/buyer/search/image/retry' "
+								data-dismiss="modal">아니오</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End main Content -->
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+</body>
+</html>

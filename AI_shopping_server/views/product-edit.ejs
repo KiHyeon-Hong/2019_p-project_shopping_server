@@ -1,0 +1,261 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+var str_section = ["봄","여름","가을","겨울"] // 대분류 명
+
+for(var i = 0;i<detailImage.length;i++){
+	detailImage[i] = '/images/detail/' + detailImage[i]
+}
+
+for(var i=detailImage.length ; i<4;i++){
+	detailImage[i] = '/images/image_upload.png'
+}
+%>
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--4">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-edit fa-2x" aria-hidden="true"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">상품 수정</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container chswhite mb-5">
+				<h3>상품 수정</h3><br>
+				<div class="row">
+					<style>
+						div.product__info__main input {
+							padding: .375rem .75rem;
+						}
+					</style>
+
+					<div class="col-lg-12 col-12">
+						<form name="editform" method="post" enctype="multipart/form-data">
+							<div class="wn__single__product">
+								<div class="row">
+									<div class="col-lg-6 col-12">
+										<img id="img1" src="/images/main/<%=product[0].productImage %>" width="100%"
+											height="100%" />
+										<input id="input_img" type="file" name="main" style="display:none" />
+
+									</div>
+									<div class="col-lg-6 col-12">
+										<div class="product__info__main">
+											<input type=text name=productName
+												value="<%=product[0].productName %>" /><br>
+
+											<div class="price-box input-group mb-3">
+												<input type="number" name=productPrice
+													value=<%=product[0].productPrice %>>원
+											</div>
+											<div class="product__overview">
+												<!-- <p style="border-style: ridge;">product info. </p> -->
+												<textarea style="width:100%" rows="15"
+													name="productText"><%=product[0].productText %> </textarea>
+											</div>
+											<!-- <div class="box-tocart d-flex">
+													<span>Qty</span>
+													<input id="qty" class="input-text qty" name="qty" min="1" value="999" title="Qty" type="number">
+
+												</div> -->
+
+											<div class="dropdown mb-3">
+
+												<a style=" color: white; " class="btn btn-secondary dropdown-toggle"
+													role="button" id="dropdownMenuLink" data-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="false">
+													<%=product[0].productCategory %>
+												</a>
+
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+													<%
+																for(var i=0;i<str_section.length;i++){
+																%>
+													<a class="dropdown-item"
+														href="javascript:selectCa('<%=str_section[i]%>');"><%=str_section[i]%></a>
+													<%}%>
+														</div>
+														</div>
+														<script>
+															function selectCa(data) {
+																document.editform.productCategory.value = data;
+																dropdownMenuLink.innerHTML = data;
+																console.log(document.editform.productCategory.value)
+															}
+														</script>
+														<input class="input-group mb-3" type="hidden" name="productCategory" value="<%=product[0].productCategory %>"
+													/>
+
+
+													<div class="product_meta">
+
+														<!-- <span class="posted_in" >Keyword:
+														<a  style="border-style: ridge;"href="#">food</a>,
+														<a style="border-style: ridge;" href="#">Fruit</a>
+													</span> -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product__info__detailed">
+										<div class="pro_details_nav nav justify-content-start" role="tablist">
+											<a class="nav-item nav-link active" data-toggle="tab" href="#nav-details"
+												role="tab">상세 정보</a>
+										</div>
+										<div class="tab__container">
+											<!-- Start Single Tab Content -->
+											<div class="pro__tab_label tab-pane fade show active" id="nav-details"
+												role="tabpanel" style=" text-align: center; ">
+
+
+												<!-- main / detail_0 / detail_1/ detail_2/ detail_3 -->
+
+												<img id="img2" src="<%=detailImage[0] %>" width="70%" />
+												<hr>
+												<input type="file" id="input_img2" name="detail_0"
+													style="display:none" /><br>
+
+												<img id="img3" src="<%=detailImage[1] %>" width="70%" />
+												<hr>
+												<input type="file" id="input_img3" name="detail_1"
+													style="display:none" /><br>
+
+												<img id="img4" src="<%=detailImage[2] %>" width="70%" />
+												<hr>
+												<input type="file" id="input_img4" name="detail_2"
+													style="display:none" /><br>
+
+												<img id="img5" src="<%=detailImage[3] %>" width="70%" />
+												<hr>
+												<input type="file" id="input_img5" name="detail_3"
+													style="display:none" /><br>
+
+												<script type="text/javascript">
+													var sel_file;
+
+													$(document).ready(function () {
+														$('#img1').click(function (e) {
+															e.preventDefault();
+															$('#input_img').click();
+														});
+														$('#img2').click(function (e) {
+															e.preventDefault();
+															$('#input_img2').click();
+														});
+														$('#img3').click(function (e) {
+															e.preventDefault();
+															$('#input_img3').click();
+														});
+														$('#img4').click(function (e) {
+															e.preventDefault();
+															$('#input_img4').click();
+														});
+														$('#img5').click(function (e) {
+															e.preventDefault();
+															$('#input_img5').click();
+														});
+
+														$("#input_img").on("change", handleImgFileSelect);
+														$("#input_img2").on("change", handleImgFileSelect2);
+														$("#input_img3").on("change", handleImgFileSelect2);
+														$("#input_img4").on("change", handleImgFileSelect2);
+														$("#input_img5").on("change", handleImgFileSelect2);
+													});
+
+
+													function handleImgFileSelect(e) {
+														var files = e.target.files;
+														var filesArr = Array.prototype.slice.call(files);
+
+														filesArr.forEach(function (f) {
+															if (!f.type.match("image.*")) {
+																alert("확장자는 이미지 확장자만 가능합니다.");
+																return;
+															}
+
+															sel_file = f;
+
+															var reader = new FileReader();
+															reader.onload = function (e) {
+																$("#img1").attr("src", e.target.result);
+															}
+															reader.readAsDataURL(f);
+														});
+													}
+													function handleImgFileSelect2(e) {
+														var num = e.target.id.toString().substr(9, 1)
+														console.log(num)
+														var files = e.target.files;
+														var filesArr = Array.prototype.slice.call(files);
+
+														filesArr.forEach(function (f) {
+															if (!f.type.match("image.*")) {
+																alert("확장자는 이미지 확장자만 가능합니다.");
+																return;
+															}
+
+															sel_file = f;
+
+															var reader = new FileReader();
+															reader.onload = function (e) {
+																$("#img" + num).attr("src", e.target.result);
+															}
+															reader.readAsDataURL(f);
+														});
+													}
+												</script>
+											</div>
+										</div>
+									</div>
+									<div class="form__btn mt-5">
+										<button type="button" onclick="javascript:document.editform.submit();" style="
+										background-color: #e59285;
+										border-color: #e59285;
+										background: #e59285 none repeat scroll 0 0;
+										border: 0 none;
+										color: #fff;
+										font-size: 14px;
+										font-weight: 600;
+										height: 40px;
+										line-height: 40px;
+										padding: 0 25px;
+										text-transform: uppercase;
+									">적용</button>
+									</div>
+						</form>
+					</div>
+					<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+			<% include inc-footer %>
+
+		</div>
+		<!-- //Main wrapper -->
+
+		<% include inc-script %>
+
+</body>
+</html>

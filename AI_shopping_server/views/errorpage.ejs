@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+
+		<!-- Start Error Area -->
+		<section class="page_error section-padding--lg bg--white">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="error__inner text-center">
+							<div class="error__logo">
+								<a href="/"><img src="/images/others/error.jpg" width="320" height="370" alt="error images"></a>
+							</div>
+							<div class="error__content">
+								<h2>error - <span style=" color: red; "><%=msg%></span></h2>
+								<br>
+								<a href="/">Home</a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Error Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+
+
+	<% include inc-script %>
+
+
+</body>
+</html>

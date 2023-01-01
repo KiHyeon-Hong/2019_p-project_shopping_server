@@ -1,0 +1,314 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<!-- 남여 토글 버튼 -->
+<style>
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 34px;
+		margin-left: 10px;
+	}
+
+	.switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgb(252, 45, 183);
+		-webkit-transition: .4s;
+		transition: .4s;
+		text-align-last: right;
+		padding-right: 10px !important;
+		color: white !important;
+		padding-left: 10px;
+		padding-top: 6px;
+		padding-right: 6px;
+	}
+
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 26px;
+		width: 26px;
+		left: 4px;
+		bottom: 4px;
+		background-color: white;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
+
+	input:checked+.slider:before {
+		-webkit-transform: translateX(26px);
+		-ms-transform: translateX(26px);
+		transform: translateX(26px);
+	}
+
+	input:checked+.slider {
+		background-color: #2196F3;
+		text-align: left;
+	}
+
+	input:focus+.slider {
+		box-shadow: 0 0 1px #2196F3;
+	}
+
+	.blue {
+		color: white;
+		text-align-last: left;
+	}
+</style>
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+		<!-- 구매자1 판매자2 -->
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--5">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-user-plus fa-2x"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">회원가입</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+
+
+			<div class="container chswhite">
+				<h2>회원가입</h2>
+				<div class="product__info__detailed">
+					<div class="pro_details_nav nav justify-content-start" role="tablist">
+						<a class="nav-item nav-link" data-toggle="tab" href="#nav-details" role="tab"
+							aria-selected="false">판매자</a>
+						<a class="nav-item nav-link active" data-toggle="tab" href="#nav-review" role="tab"
+							aria-selected="true">구매자</a>
+					</div>
+					<div class="tab__container" style=" text-align: -webkit-center; ">
+						<!-- Start Single Tab Content -->
+						<div class="pro__tab_label tab-pane fade" id="nav-details" role="tabpanel">
+							<div class="col-lg-6 col-12">
+								<div class="my__account__wrapper">
+									<!-- <h3 class="account__title">판매자 회원가입</h3> -->
+									<form name='seller' method="post">
+										<div class="account__form">
+											<div class="input__box">
+												<label>ID <span>*</span></label>
+												<input type="text" name="userId">
+											</div>
+											<div class="input__box">
+												<label>비밀번호<span>*</span></label>
+												<input type="password" name="userPass">
+											</div>
+											<div class="input__box">
+												<label>비밀번호 확인<span>*</span></label>
+												<input type="password" name="userPass2">
+											</div>
+											<div class="input__box">
+												<label>이름<span>*</span></label>
+												<input type="text" name="userName">
+											</div>
+											<div class="input__box">
+												<label>전화번호<span>*</span></label>
+												<input type="tel" name="userPhone">
+											</div>
+											<div class="input__box">
+												<label>주소<span>*</span></label>
+												<input type="text" name="userAddr">
+											</div>
+											<div class="input__box">
+												<label>계좌<span>*</span></label>
+												<input type="text" name="userAccount">
+											</div>
+											<div class="input__box" style="display: none;">
+												<label>성별<span>*</span></label>
+												<input type="hidden" name="userSex" value="0">
+											</div>
+											<div class="input__box" style="display: none;">
+												<label>Auth<span>*</span></label>
+												<input type="hidden" name="userAuth" value="2">
+											</div>
+											<div class="input__box" style="display: none;">
+												<label>생년월일<span>*</span></label>
+												<input type="hidden" name="userBirth" value="0">
+											</div>
+
+											<div class="form__btn">
+												<label><span class="results"></span></label>
+												<button type="button" onclick="javascript:chks()" style=" width: 92px; ">확인</button>
+												<button type="button"
+													onclick="javascript:document.seller.reset()">다시작성</button>
+												<script>
+													function chks() {
+														var p1 = document.seller.userPass.value
+														var p2 = document.seller.userPass2.value
+														if (p1 != p2) {
+															document.querySelector(".results").innerHTML = '유효하지 않은 입력';
+															return
+														}
+
+														javascript: document.seller.submit()
+													}
+												</script>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</div>
+						<!-- End Single Tab Content -->
+						<!-- Start Single Tab Content -->
+						<div class="pro__tab_label tab-pane fade active show" id="nav-review" role="tabpanel">
+							<div class="col-lg-6 col-12">
+								<div class="my__account__wrapper">
+									<!-- <h3 class="account__title">구매자 회원가입</h3> -->
+									<form name='buyer' method="post">
+										<div class="account__form">
+											<div class="input__box">
+												<label>ID <span>*</span></label>
+												<input type="text" name="userId">
+											</div>
+											<div class="input__box">
+												<label>비밀번호<span>*</span></label>
+												<input type="password" name="userPass">
+											</div>
+											<div class="input__box">
+												<label>비밀번호 확인<span>*</span></label>
+												<input type="password" name="userPass2">
+											</div>
+											<div class="input__box">
+												<label>이름<span>*</span></label>
+												<input type="text" name="userName">
+											</div>
+											<div class="input__box">
+												<label>전화번호<span>*</span></label>
+												<input type="tel" name="userPhone">
+											</div>
+											<div class="input__box">
+												<label>주소<span>*</span></label>
+												<input type="text" name="userAddr">
+											</div>
+											<div class="input__box">
+												<label>계좌<span>*</span></label>
+												<input type="text" name="userAccount">
+											</div>
+											<div class="input__box">
+												<label>성별<span>*</span></label>
+												<div style=" text-align-last: center; ">
+													<!-- <label style=" display: inline-block; "for="man">man</label>
+														<input style=" width: 30px; " id="man" type="radio" name="userSex" value="0" checked>
+														<input style=" width: 30px; " id="woman" type="radio" name="userSex" value="1">
+														<label style=" display: inline-block; "for="woman">woman</label>
+
+ -->
+
+													<label class="switch">
+														<input type="checkbox">
+														<span class="slider">W</span>
+														<input type="hidden" name="userSex" id="myField" value="1">
+													</label>
+
+													<script>
+														$(".switch span").click(function () {
+															$(".switch span").html($(".switch span").html() == 'M' ? 'W' : 'M');
+
+															if ($(".switch span").html() == 'M') {
+																$(".switch span").addClass('blue');
+															} else {
+																$(".switch span").removeClass('blue');
+															}
+
+
+															document.getElementById('myField').value = ($(".switch span").html() == 'M' ? '0' : '1');//
+															// console.log(document.getElementById('myField').value);
+														});
+													</script>
+												</div>
+
+											</div>
+											<div class="input__box" style="display: none;">
+												<label>Auth<span>*</span></label>
+												<input type="hiddle" name="userAuth" value="1">
+											</div>
+											<div class="input__box">
+												<label>생년월일<span>*</span></label>
+												<input type="date" name="userBirth">
+											</div>
+
+											<div class="form__btn">
+												<label><span class="resultb"></span></label>
+												<button type="button" onclick="javascript:chkb()" style=" width: 92px; ">확인</button>
+												<button type="button"
+													onclick="javascript:document.buyer.reset()">다시작성</button>
+												<script>
+													function chkb() {
+
+														var p1 = document.buyer.userPass.value
+														var p2 = document.buyer.userPass2.value
+														if (p1 != p2) {
+															document.querySelector(".resultb").innerHTML = '유효하지 않은 입력';
+															return
+														}
+
+														javascript: document.buyer.submit()
+													}
+												</script>
+											</div>
+
+
+
+										</div>
+									</form>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<!-- End Single Tab Content -->
+				</div>
+			</div>
+
+
+
+			<div class="row">
+
+			</div>
+	</div>
+	</section>
+	<!-- End My Account Area -->
+
+	<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<link rel="stylesheet" href="/css/mdb.min.css">
+<script src="/js/mdb.min.js"></script>
+<script src="/js/rating.min.js"></script>
+
+	<body>
+
+		<!-- Main wrapper -->
+		<div class="wrapper" id="wrapper">
+
+			<% include inc-header %>
+
+			<!-- Start Bradcaump area -->
+			<div class="ht__bradcaump__area bg-image--7">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="bradcaump__inner text-center">
+								<h2 class="bradcaump-title"><%=title%></h2>
+								<nav class="bradcaump-content">
+									<a class="breadcrumb_item" href="/">Home</a>
+									<span class="brd-separetor">/</span>
+									<span class="breadcrumb_item active"><%=title%></span>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Bradcaump area -->
+			<!-- Start main Content -->
+			<div class="maincontent bg--white pt--80 pb--55">
+				<div class="container">
+
+						<div class="container">
+								<span id="rateMe1"></span>
+							  </div>
+			
+					<div class="row" style="justify-content: center;text-align: -webkit-center;">
+						
+
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+
+
+			<% include inc-footer %>
+
+
+
+		</div>
+		<!-- //Main wrapper -->
+
+
+
+		<% include inc-script %>
+
+
+	</body>
+
+</html>
+
+<script>
+								  
+		// Rating Initialization
+$(document).ready(function() {
+$('#rateMe1').mdbRate();
+}); </script>

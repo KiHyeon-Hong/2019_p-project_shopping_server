@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%%>
+
+	<body>
+		<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+		<!-- Main wrapper -->
+		<div class="wrapper" id="wrapper">
+
+			<% include inc-header %>
+
+			<!-- Start Bradcaump area -->
+			<div class="ht__bradcaump__area bg-image--7">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="bradcaump__inner text-center">
+								<h2 class="bradcaump-title"><%=title%></h2>
+								<nav class="bradcaump-content">
+									<a class="breadcrumb_item" href="/">Home</a>
+									<span class="brd-separetor">/</span>
+									<span class="breadcrumb_item active"><%=title%></span>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Bradcaump area -->
+			<!-- Start main Content -->
+			<div class="maincontent bg--white pt--80 pb--55">
+				<div class="container">
+					<div class="row" style=" justify-content: center; ">
+                            <button class="btn btn-default tocart" data-target="#layerpop" data-toggle="modal"  type="button"
+                            onclick="javascript:test();">Add to Cart</button>
+
+                            <script>
+                                function test(){    
+                                    console.log()
+
+                                }
+                            </script>
+
+
+                            
+										<div class="modal fade" id="layerpop" >
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <!-- header -->
+                                                    <div class="modal-header">
+                                                      <!-- 닫기(x) 버튼 -->
+                                                      <button type="button" class="close" data-dismiss="modal">×</button>
+                                                      <!-- header title -->
+                                                      <h4 class="modal-title"></h4>
+                                                    </div>
+                                                    <!-- body -->
+                                                    <div class="modal-body result" >
+                                                          Body
+                                                    </div>
+                                                    <!-- Footer -->
+                                                    <div class="modal-footer">
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal">계속 쇼핑하기</button>
+                                                      <button type="button" class="btn btn-default" onclick = "location.href = '/src/buyer/basket/index' " >장바구니로</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+					</div>
+					<div class="row" style="justify-content: center;text-align: -webkit-center;">
+						
+
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+
+
+			<% include inc-footer %>
+
+
+
+		</div>
+		<!-- //Main wrapper -->
+
+
+
+		<% include inc-script %>
+
+
+	</body>
+
+</html>

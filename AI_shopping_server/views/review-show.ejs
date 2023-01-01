@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+		<% include inc-head %>
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                        	<h2 class="bradcaump-title"><i class="far fa-comment fa-2x"></i></h2>
+                            <nav class="bradcaump-content">
+                              <span class="brd-separetor"><%=productName%></a>의 리뷰 목록</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+        <!-- Start main Content -->
+        <div class="maincontent bg--white pt--80 pb--55">
+        	<div class="container chswhite mb-5">
+				<h3><a href="/src/buyer/show?productNum=<%=productNum%>"><%=productName%></a>의 리뷰 목록</h3>
+									<hr style=" margin: 20px; ">
+									<div class="review__attribute">
+										<%
+										var reviewnum = reviewName.length;
+										if(reviewnum == 0 ){
+											%>
+											<h3>아직 리뷰가 없습니다! </h3>
+											<%
+										}
+										else{
+											%>
+
+											<style>
+										 	table.table td {
+												vertical-align: middle;
+											}
+											</style>
+										<table class="table">
+
+											
+											<colgroup>
+												<col width="20%">
+												<col width="20%">
+												<col width="60%">
+												<col width="20%">
+											</colgroup>
+
+										<%
+										for(var i = 0; i < reviewName.length; i++) { %>
+
+											<tr>
+												<td>
+													<h4 style="margin-bottom: 0px;margin-top: 10px;"><%=reviewName[i]%></h4>
+												</td>
+												<td>
+													<div class="rating-summary d-flex">
+														<ul class="rating d-flex">
+																<%
+																var stars = reviewStars[i];
+																for(var j = 0;j<stars;j++){
+																%>
+																<li><i class="zmdi zmdi-star" style="color:#ff5501"></i></li>
+																<%
+																}
+	
+																for(var j =0;j<5-stars;j++){
+																%>
+																<li class="off"><i class="zmdi zmdi-star"></i></li>
+															<% } %>
+	
+														</ul>
+													</div>
+												</td>
+												<td>
+													<%= reviewReview[i] %>
+												</td>
+												<td>
+													<%
+												if(userAuth == '0') { %>
+													<a 
+													href="javascript:remove(<%=reviewuserNum[i]%>,<%=productNum%>)"><i class="fas fa-window-close" aria-hidden="true"></i></a>
+													
+													<% } %>
+												</td>
+											</tr>
+										<div class="review__ratings__type d-flex">
+											<div class="review-ratings">
+												
+
+											</div>
+											<div class="review-content">
+												<p>  </p>
+
+												<%
+												if(userAuth == '0') { %>
+										      <!-- <a href="javascript:reviewedit('<%= reviewReview[i] %>')">수정</a> -->
+											  
+										    <% } %>
+											</div>
+										</div>
+
+										<%} %>
+
+									</table>
+									
+									
+									<%
+									} %>
+
+
+									</div>
+						</div>
+      			</div>
+        	</div>
+        </div>
+		<!-- End main Content -->
+
+
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+
+
+
+	<script>
+		function remove(n,m) {
+			result = confirm("정말로 삭제하시겠습니까?")
+
+			if (result) {
+				location.href = '/src/admin/reviewDelete?userNum=' + n + '&productNum=' + m;
+			}
+			else return;
+		}
+	</script>
+
+    <% include inc-script %>
+</body>
+</html>

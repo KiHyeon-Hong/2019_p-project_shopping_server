@@ -1,0 +1,188 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--9">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                        	<h2 class="bradcaump-title"><i class="fas fa-info-circle fa-2x"></i></h2>
+                            <nav class="bradcaump-content">
+                              <span class="brd-separetor">정보 수정</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+			<div class="container chswhite">
+				<div class="row" style="justify-content: center;">
+
+					<%
+					//2;판매자   1;구매자
+					console.log(userAuth +" "+ typeof userAuth)
+					if(userAuth == 2){
+						%>
+						<div class="col-lg-6 col-12">
+								<div class="my__account__wrapper">
+									<h3 class="account__title">정보 수정</h3>
+									<form name="seller" method="POST">
+										<div class="account__form">
+												<input type="hidden" name="userNum" value="<%=userNum%>">
+											<div class="input__box">
+												<label>비밀번호</label>
+												<input type="password" name="userPass" value="<%=userPass%>">
+											</div>
+											<div class="input__box">
+												<label>이름</label>
+												<input type="text" name="userName" value="<%=userName%>">
+											</div>
+											<div class="input__box">
+												<label>전화번호</label>
+												<input type="text" name="userPhone" value="<%=userPhone%>">
+											</div>
+											<div class="input__box">
+												<label>주소</label>
+												<input type="text" name="userAddr" value="<%=userAddr%>">
+											</div>
+											<div class="input__box">
+												<label>계좌번호</label>
+												<input type="text" name="userAccount" value="<%=userAccount%>">
+											</div>
+											<div class="input__box" style="display: none;">
+												<label>성별</label>
+												<input type="hidden" name="userSex" value="<%=userSex%>">
+											</div>
+											<div class="input__box" style="display: none;">
+												<label>생일</label>
+												<input type="hidden" name="userBirth" value="<%=userBirth%>">
+											</div>
+
+											<div class="form__btn">
+												<!-- <button onclick="">확인</button> -->
+												<!-- <input type="submit" value="Apply"> -->
+												<button  onClick="javascript:document.seller.sumbit();">확인</button>
+
+												<!-- <button>Reset</button> -->
+												<!-- <button>Password change</button> -->
+												<button type="button" onClick="delchecksel()">회원탈퇴</button>
+												<script type="text/javascript">
+													function delchecksel(){
+														result = confirm("정말로 탈퇴하시겠습니까?" )// 내장함수. 정말로 삭제하겠냐.
+
+														if(result){
+															document.seller.method = "get"
+															document.seller.action = "/src/userManagement/userDelete";
+															document.seller.submit();
+														}
+														else return;
+													}
+
+												</script>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<%
+					}else if (userAuth == 1){
+						%>
+						<div class="col-lg-6 col-12">
+							<div class="my__account__wrapper">
+								<h3 class="account__title">정보 수정</h3>
+								<form name="buyer" method="POST">
+									<div class="account__form">
+											<input type="hidden" name="userNum" value="<%=userNum%>">
+										<div class="input__box">
+											<label>비밀번호</label>
+											<input type="password" name="userPass" value="<%=userPass%>">
+										</div>
+										<div class="input__box">
+											<label>이름</label>
+											<input type="text" name="userName" value="<%=userName%>">
+										</div>
+										<div class="input__box">
+											<label>전화번호</label>
+											<input type="text" name="userPhone" value="<%=userPhone%>">
+										</div>
+										<div class="input__box">
+											<label>주소</label>
+											<input type="text" name="userAddr" value="<%=userAddr%>">
+										</div>
+										<div class="input__box">
+											<label>계좌번호</label>
+											<input type="text" name="userAccount" value="<%=userAccount%>">
+										</div>
+										<div class="input__box" style="display: none;">
+											<label>성별</label>
+											<input type="hidden" max="1" min="0" name="userSex" value="<%=userSex%>">
+										</div>
+										<div class="input__box">
+											<label>생일</label>
+											<input type="date" name="userBirth" value="<%=userBirth%>">
+										</div>
+
+										<div class="form__btn">
+											<!-- <button onclick="">확인</button> -->
+											<!-- <input type="submit" value="Apply"> -->
+											<button  onClick="javascript:document.buyer.sumbit();">확인</button>
+
+											<!-- <button>Reset</button> -->
+											<!-- <button>Password change</button> -->
+											<button type="button" onClick="delcheck()">회원탈퇴</button>
+											<script type="text/javascript">
+												function delcheck(){
+													result = confirm("정말로 탈퇴하시겠습니까?" )// 내장함수. 정말로 삭제하겠냐.
+
+													if(result){
+														document.buyer.method = "get"
+														document.buyer.action = "/src/userManagement/userDelete";
+														document.buyer.submit();
+													}
+													else return;
+												}
+
+											</script>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<%
+					}else{
+						%>
+
+						<%
+					}
+					%>
+
+
+
+				</div>
+			</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+
+</body>
+</html>

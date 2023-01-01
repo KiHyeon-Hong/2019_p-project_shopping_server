@@ -1,0 +1,295 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+<link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+<!-- 원본 데이터 -->
+<input id="oridata" type="hidden" value="<%=adminCheck[0].productNum%>">
+<input id="oridata" type="hidden" value="<%=adminCheck[1].productNum%>">
+<input id="oridata" type="hidden" value="<%=adminCheck[2].productNum%>">
+<input id="oridata" type="hidden" value="<%=adminCheck[3].productNum%>">
+<input id="oridataname" type="hidden" value="<%=adminCheck[0].productName%>">
+<input id="oridataname" type="hidden" value="<%=adminCheck[1].productName%>">
+<input id="oridataname" type="hidden" value="<%=adminCheck[2].productName%>">
+<input id="oridataname" type="hidden" value="<%=adminCheck[3].productName%>">
+<input id="oridataimage" type="hidden" value="<%=adminCheck[0].productImage%>">
+<input id="oridataimage" type="hidden" value="<%=adminCheck[1].productImage%>">
+<input id="oridataimage" type="hidden" value="<%=adminCheck[2].productImage%>">
+<input id="oridataimage" type="hidden" value="<%=adminCheck[3].productImage%>">
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-ad fa-2x" aria-hidden="true"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">광고 상품 설정</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container chswhite mb-5">
+				<div class="row">
+
+					<div class="col-lg-12 col-12">
+						<h3>광고 제품 설정</h3>
+						<p>
+							메인 화면에 사용자에게 보여질 광고 제품을 설정해 주세요.<br>
+							아래 목록에서 설정하고자하는 상품을 선택해주세요.
+
+							<br>
+							<br>
+							<b>현재 설정된 상품 4개</b> :
+						</p>
+
+						<form name="editform" method="post" >
+							<div class="wn__single__product">
+
+								<div class="product__overview">
+									<div class="row mt-5">
+
+
+										<%
+										for(var i=0;i<adminCheck.length;i++){
+											%>
+											<div id="con<%=i%>" class="col-3" style=" text-align-last: center; ">
+												<div id="head<%=i%>"></div><br>
+
+												<a target="_blank" href="/src/buyer/show?productNum=<%=adminCheck[i].productNum%>">
+													<img style=" -webkit-border-radius: 500px; " src="/images/main/<%=adminCheck[i].productImage%>" width="180" height="180"><br>
+													<h4><%=adminCheck[i].productName%></h4></a>
+												<div class="container" style=" text-align-last: center; ">
+												</div>
+												<input name="ad" class="form-control" type="hidden" min="0"  max="<%=total.length%>" value="<%=adminCheck[i].productNum%>">
+											</div>
+											<%
+										}
+										%>
+
+
+									</div>
+
+									<div class="row">
+										<div class="col-12 mt-5">
+											<div class="card shadow mb-4">
+												<div class="card-header py-3">
+												  <h6 class="m-0 font-weight-bold text-default">전체 제품 목록</h6>
+												</div>
+												<div class="card-body">
+													<div class="table-responsive">
+													  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+														  <colgroup>
+															<col width="1%">
+															<col width="1%">
+															<col width="5%">
+															<col width="1%">
+															<col width="2%">
+														</colgroup>
+														<thead>
+														  <tr>
+															<th>번호</th>
+															<th>판매자</th>
+															<th>상품</th>
+															<th>분류</th>
+															<th>가격</th>
+														  </tr>
+														</thead>
+														<tfoot>
+														  <tr>
+															<th>번호</th>
+															<th>판매자</th>
+															<th>상품</th>
+															<th>분류</th>
+															<th>가격</th>
+														  </tr>
+														</tfoot>
+														<tbody>
+
+															<%
+															for(var i=0;i<total.length;i++){
+															%>
+															<tr>
+																<input type="hidden" id="pi<%=total[i].productNum%>" value="<%=total[i].productImage%>">
+																<td><a href="javascript:chs(<%=total[i].productNum%>)" style=" width: 100%; height: 100%; display: block; "><%=total[i].productNum%></a></td>
+																<td ><%=total[i].userName%></td>
+																<td id="pn<%=total[i].productNum%>"><%=total[i].productName%></tdid="pn<%=total[i].productNum%>">
+																<td><%=total[i].productCategory%></td>
+																<td><%=total[i].productPrice%></td>
+															</tr>
+
+															<%
+															}
+															%>
+
+
+														</tbody>
+													  </table>
+													</div>
+												  </div>
+											  </div>
+										</div>
+
+
+									</div>
+								</div>
+
+							</div>
+
+							<div class="form__btn mt-5">
+								<button type="button" onclick="javascript:go();" style="
+										background-color: #e59285;
+										border-color: #e59285;
+										background: #e59285 none repeat scroll 0 0;
+										border: 0 none;
+										color: #fff;
+										font-size: 14px;
+										font-weight: 600;
+										height: 40px;
+										line-height: 40px;
+										padding: 0 25px;
+										text-transform: uppercase;
+									">적용</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+
+
+			<% include inc-footer %>
+
+
+			<script>
+				function go(){
+					// 중복 검사나 빈값 검사
+
+					var flag = true;
+					var aaa=[]
+
+					aaa[0] = editform.ad[0].value
+					aaa[1] = editform.ad[1].value
+					aaa[2] = editform.ad[2].value
+					aaa[3] = editform.ad[3].value
+					console.log(aaa)
+
+					//빈값 검사
+					for(var a=0;a<4;a++){
+						if(aaa[a]==''){
+							console.log('빈값')
+							flag=false;
+							break
+						}
+					}
+
+					if (!flag) {
+						for (var a = 0; a < 4; a++) {
+							for (var b = a + 1; b < 4; b++) {
+								if (aaa[a].length > 0 && aaa[b].length > 0) {
+									if (aaa[a] == aaa[b] && a != b) {
+										flag = false;
+										console.log('중복값'+aaa[a] + 'sdf' + aaa[b] + 'a' + a + 'b' + b)
+									}
+								}
+							}
+						}
+					}
+
+
+					if(flag){
+						// alert('성공')
+						// alert(aaa)
+						var res = confirm(aaa+'등록하시겠습니까?')
+						if(res){
+							document.editform.submit()
+						}
+						else{
+							return
+						}
+					}else{
+						alert('유효하지 않습니다. 중복없이 모든 값을 채워주세요')
+
+					}
+				}
+
+				function chs(n){
+					var targetinput  = 0
+					var hello = []
+
+					for(var i=0;i<4;i++){
+						hello.push( $("input[name='ad']")[i].value) 
+						if(hello[i] == n){
+							alert('이미 선택되있는 상품입니다.')
+							return;
+						}
+					}
+					console.log(hello)
+
+
+					// 안채워진 인풋 검사
+					for(var i=0;i<4;i++){
+						var data = $('#head'+i)[0].innerHTML
+						console.log(data)
+						if(data == ''){
+							targetinput = i;
+							break
+						}
+					}
+
+					// 체크 / 초기화 버튼 보기
+					document.editform.ad[targetinput].value = n;
+					$('#head'+targetinput)[0].innerHTML = "<a href='javascript:init("+targetinput+")'><i class='fas fa-undo'></i></a>"
+
+					// 정보 변경하기
+					var pi = $('#pi'+n)[0].value
+					$('#con'+targetinput+' img')[0].src = '/images/main/'+pi
+					$('#con'+targetinput+' h4')[0].innerHTML = $('#pn'+n)[0].innerHTML;
+
+				}
+
+				function init(n){
+					var ori = oridata[n].value
+					var oriname = oridataname[n].value
+					document.editform.ad[n].value = ori;
+					$('#head'+n)[0].innerHTML = ''
+					var pi = oridataimage[n].value
+
+					//정보 초기화
+					$('#con'+n+' img')[0].src = '/images/main/'+pi
+					$('#con'+n+' h4')[0].innerHTML = oriname;
+				}
+			</script>
+
+
+		</div>
+		<!-- //Main wrapper -->
+
+		<script src="/js/datatables-demo.js"></script>
+
+		<script src="/js/vendor/datatables/jquery.dataTables.min.js"></script>
+		<script src="/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+		<% include inc-script %>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  </head>
+  <body>
+<h1>제품 목록</h1>
+<hr>
+<% for(var i=0;i<product.length;i++){ %>
+  <img src="/images/main/<%=product[i].productImage %>" width="180" height="120"/>
+  제품명: <%=product[i].productName %> <br>
+  대분류: <%=product[i].productCategory %><br>
+  가격: <%=product[i].productPrice %><br>
+  <% if(product[i].productDetail != null){ %>
+  <img src="/images/main/<%=product[i].productDetail %>" width="180" height="120"/>
+<% } %>
+  제품상세설명 <%=product[i].productText %><br>
+  <a href='/src/admin/reviewList?productNum=<%=product[i].productNum%>'>리뷰 보기</a>
+  <% } %>
+</body>
+</html>

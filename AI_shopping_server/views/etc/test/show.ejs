@@ -1,0 +1,41 @@
+<h1>제품 상세 정보</h1>
+<hr>
+<form method=post>
+  제품벙호<input type=hidden name=productNum value=<%=productNum%> /><br>
+  제품 이미지<input type=text name=productImage value=<%=productImage%> /><br>
+  제품 이름<input type=text name=productName value="<%=productName%>" /><br>
+  제품 대분류<input type=text name=productCategory value="<%=productCategory%>" /><br>
+  제품 가격<input type=text name=productPrice value="<%=productPrice%>" /><br>
+  제품 상세 이미지<input type=text name=productDetail value="<%=productDetail%>" /><br>
+  제품 상세 설명<input type=text name=productText value="<%=productText%>" /><br>
+  제품 등록자<input type=text name=uN value="<%=uN%>" /><br>
+</form>
+<br>
+<br>
+<div>리뷰</div>
+<table>
+<% for(var i = 0; i < reviewName.length; i++) { %>
+  <tr>
+    <td><%=reviewName[i]%></td>
+    <td><%=reviewStars[i]%></td>
+    <td><%=reviewReview[i]%></td>
+    <% if(myName == reviewName[i]) { %>
+      <td><a href="/src/buyer/review/reviewUpdate?userNum=<%=userNum%>&productNum=<%=productNum%>">수정</a></td>
+      <td><a href="/src/buyer/review/reviewDelete?userNum=<%=userNum%>&productNum=<%=productNum%>">삭제</a></td>
+    <% } %>
+  </tr>
+<% } %>
+</table>
+
+<form method=post action="/src/buyer/review/reviewInsert">
+  <table>
+    <tr>
+      <td><input type=text name=userNum value=<%=userNum%> /></td>
+      <td><input type=text name=userName value=<%=userName%> /></td>
+      <td><input type=text name=productNum value=<%=productNum%> /></td>
+      <td><input type=text name=productStars /></td>
+      <td><input type=text name=productReview /></td>
+      <td><input type=submit value="리뷰 등록" /></td>
+    </tr>
+  </table>
+</form>

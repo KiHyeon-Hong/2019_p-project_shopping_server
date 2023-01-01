@@ -1,0 +1,206 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+
+<%
+console.log(bg)
+var temp = []
+for(var i =0;i<4;i++){
+	temp[i] = '/images/bg/'+bg[i]
+}
+%>
+
+<body>
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="far fa-images fa-2x" aria-hidden="true"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">배경 설정</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container chswhite mb-5">
+				<div class="row">
+
+					<div class="col-lg-12 col-12">
+						<h3>배경 설정</h3>
+
+						<form name="editform" method="post" enctype="multipart/form-data">
+							<div class="wn__single__product">
+								<div class="row m-5" style=" justify-content: center; ">
+									<div class="col-6">
+
+										<!-- <label for="hello"
+												style=" padding: 10px; "
+												>쇼핑몰 명</label> -->
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-12 col-12" style="text-align: left;">
+											<div class="product__info__main">
+
+												<div class="product__overview">
+													<h4></h4>
+												</div>
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-6 col-12">
+												<img id="img1"
+													src="<%=temp[0]%>"
+													width="522px" height="222px" />
+
+												<input id="input_img1" type="file" name="bg_0" style="display:none" />
+
+											</div>
+											<div class="col-lg-6 col-12">
+												<img id="img2"
+													src="<%=temp[1]%>"
+													width="522px" height="222px"  />
+
+												<input id="input_img2" type="file" name="bg_1" style="display:none" />
+
+											</div>
+
+										</div>
+										<div class="row mt-4">
+											<div class="col-lg-6 col-12">
+												<img id="img3"
+													src="<%=temp[2]%>"
+													width="522px"  height="222px" />
+
+												<input id="input_img3" type="file" name="bg_2" style="display:none" />
+
+											</div>
+											<div class="col-lg-6 col-12">
+												<img id="img4"
+													src="<%=temp[3]%>"
+													width="522px" height="222px"  />
+
+												<input id="input_img4" type="file" name="bg_3" style="display:none" />
+
+											</div>
+
+										</div>
+
+
+									</div>
+
+
+								</div>
+
+								<div class="form__btn mt-5">
+									<button type="button" onclick="javascript:document.editform.submit();" style="
+										background-color: #e59285;
+										border-color: #e59285;
+										background: #e59285 none repeat scroll 0 0;
+										border: 0 none;
+										color: #fff;
+										font-size: 14px;
+										font-weight: 600;
+										height: 40px;
+										line-height: 40px;
+										padding: 0 25px;
+										text-transform: uppercase;
+									">적용</button>
+								</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+
+				</div>
+			</div>
+		</div>
+		<!-- End main Content -->
+
+
+
+		<% include inc-footer %>
+
+
+		<script type="text/javascript">
+
+			var sel_file;
+
+			$(document).ready(function () {
+				$('#img1').click(function (e) {
+					e.preventDefault();
+					$('#input_img1').click();
+				});
+				$('#img2').click(function (e) {
+					e.preventDefault();
+					$('#input_img2').click();
+				});
+				$('#img3').click(function (e) {
+					e.preventDefault();
+					$('#input_img3').click();
+				});
+				$('#img4').click(function (e) {
+					e.preventDefault();
+					$('#input_img4').click();
+				});
+
+				$("#input_img1").on("change", handleImgFileSelect);
+				$("#input_img2").on("change", handleImgFileSelect);
+				$("#input_img3").on("change", handleImgFileSelect);
+				$("#input_img4").on("change", handleImgFileSelect);
+			});
+
+
+			function handleImgFileSelect(e) {
+				var num = e.target.id.toString().substr(9, 1)
+				console.log(num)
+				var files = e.target.files;
+				var filesArr = Array.prototype.slice.call(files);
+
+				filesArr.forEach(function (f) {
+					if (!f.type.match("image.*")) {
+						alert("확장자는 이미지 확장자만 가능합니다.");
+						return;
+					}
+
+					sel_file = f;
+
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$("#img" + num).attr("src", e.target.result);
+					}
+					reader.readAsDataURL(f);
+				});
+			}
+		</script>
+
+
+
+	</div>
+	<!-- //Main wrapper -->
+
+
+
+	<% include inc-script %>
+
+
+</body>
+
+</html>

@@ -1,0 +1,443 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+for(var i = 0;i<detailImage.length;i++){
+	detailImage[i] = '/images/detail/' + detailImage[i]
+}
+for(var i=detailImage.length ; i<4;i++){
+	detailImage[i] = ''
+}
+%>
+
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-shopping-basket fa-2x"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">상품 상세보기</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container chswhite">
+				<div class="row">
+					<div class="col-lg-12 col-12">
+						<div class="wn__single__product">
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<div class="wn__fotorama__wrapper">
+										<div class="fotorama wn__fotorama__action" data-nav="thumbs">
+											<img src="/images/main/<%=productImage %>" alt="img">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									<div class="product__info__main">
+										<!-- <h5><%=productNum%></h5> -->
+										<h1><%=productName%></h1>
+
+										<div class="price-box">
+											<span><%=productPrice%>원</span>
+										</div>
+										<div class="product__overview">
+											<p><%=productText%></p>
+											<ul>
+												<li>
+													판매자 : <%=uN%>
+												</li>
+											</ul>
+
+										</div>
+										<%				if(userAuth=='1'){		%>
+										<div class="box-tocart d-flex">
+											<span>수량</span>
+											<input id="qty" class="input-text qty" name="qty" min="1" value="1"
+												title="Qty" type="number">
+											<div class="addtocart__actions">
+
+
+												<button class="btn btn-default tocart" data-target="#layerpop"
+													data-toggle="modal" type="button"
+													onclick="javascript:sendAjax('/src/buyer/basket/insert');">장바구니
+													담기</button>
+
+												<input type="hidden" id="temphello" value="<%=userNum%>">
+												<input type="hidden" id="temphello" value="<%=productNum%>">
+												<script>
+													function sendAjax(url) {
+
+														var count = $('#qty')[0].value
+														var data = { 'userNum': temphello[0].value, 'productNum': temphello[1].value, 'productCount': count };
+														// 입력값을 변수에 담고 문자열 형태로 변환
+														data = JSON.stringify(data);
+														console.log(data)
+
+														// content-type을 설정하고 데이터 송신
+														var xhr = new XMLHttpRequest();
+														xhr.open('POST', url);
+														xhr.setRequestHeader('Content-type', "application/json");
+														xhr.send(data);
+
+														// 데이터 수신이 완료되면 표시
+														xhr.addEventListener('load', function () {
+															var result = JSON.parse(xhr.responseText);
+															// 데이터가 없으면 return 반환
+															if (result.result !== 'ok') return;
+															// 데이터가 있으면 결과값 표시
+															document.querySelector(".result").innerHTML = result.resultv;
+
+														});
+													}
+												</script>
+
+											</div>
+											<div class="product-addto-links clearfix">
+												<!-- <a class="wishlist" href="#"></a>
+												<a class="compare" href="#"></a> -->
+											</div>
+										</div>
+
+										<%} else if (userAuth.length ==0){
+													%>
+										<div class="box-tocart d-flex">
+											<span>수량</span>
+											<input id="qty" class="input-text qty" name="qty" min="1" value="1"
+												title="Qty" type="number">
+											<div class="addtocart__actions">
+
+
+												<button class="btn btn-default tocart" type="button"
+													onclick="location.href='/src/userManagement/login'">장바구니 담기</button>
+											</div>
+
+										</div>
+										<%
+
+												}else{
+
+												}%>
+										<div class="product_meta">
+											<span class="posted_in">카테고리:
+												<a href="#"><%=productCategory%></a>
+											</span>
+										</div>
+
+										<div class="modal fade" id="layerpop">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<!-- header -->
+													<div class="modal-header">
+														<!-- 닫기(x) 버튼 -->
+														<button type="button" class="close"
+															data-dismiss="modal">×</button>
+														<!-- header title -->
+														<h4 class="modal-title"></h4>
+													</div>
+													<!-- body -->
+													<div class="modal-body result">
+													</div>
+													<!-- Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">계속 쇼핑하기</button>
+														<button type="button" class="btn btn-default"
+															onclick="location.href = '/src/buyer/basket/index' ">장바구니로</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="product__info__detailed">
+							<div class="pro_details_nav nav justify-content-start" role="tablist">
+								<a class="nav-item nav-link active" data-toggle="tab" href="#nav-details" role="tab">상세
+									정보</a>
+								<a class="nav-item nav-link" data-toggle="tab" href="#nav-review" role="tab">리뷰</a>
+							</div>
+							<div class="tab__container">
+								<!-- Start Single Tab Content -->
+								<div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
+									<div class="description__attribute">
+										<% for(let i = 0; i < detailImage.length; i++) { %>
+											<img src="<%=detailImage[i]%>" />
+											<br>
+										<% } %>
+									</div>
+								</div>
+								<!-- End Single Tab Content -->
+								<!-- Start Single Tab Content -->
+								<div class="pro__tab_label tab-pane fade" id="nav-review" role="tabpanel">
+									<div class="review__attribute">
+										<h1>사용자 리뷰</h1>
+
+										<style>
+											.zmdi.zmdi-star{
+												color: #ff5501;
+											}
+											li.off > .zmdi.zmdi-star{
+												color: #b6b6b6;
+											}
+										</style>
+
+										<table class="table">
+
+										<%
+										var reviewnum = reviewName.length;
+										if(reviewnum == 0 ){
+											%>
+										<h3>아직 리뷰가 없습니다! 리뷰를 남겨주세요!</h3>
+										<%
+										}
+
+										for(var i = 0; i < reviewName.length; i++) { %>
+											<tr>
+
+												<td width=70>
+													<h2 style="margin-bottom: 0px;margin-top: 10px;"><%=reviewName[i]%></h2>
+												</td>
+												<td width=70
+													<div class="review-ratings">
+														<div class="rating-summary d-flex">
+															<span></span>
+															<ul class="rating d-flex">
+																<%
+																	var stars = reviewStars[i];
+																	for(var j = 0;j<stars;j++){
+																%>
+																<li><i class="zmdi zmdi-star"></i></li>
+																<%
+																	}
+																	for(var j =0;j<5-stars;j++){
+																%>
+																<li class="off"><i class="zmdi zmdi-star"></i></li>
+																<% } %>
+
+															</ul>
+														</div>
+													</div>
+												</td>
+												<td width=400>
+													<div class="review-content">
+														<p> <%= reviewReview[i] %> </p>
+													</div>
+												</td>
+
+												<td width=30 style=" color: red; ">
+													<%
+													console.log("ASD "+reviewReview[i])
+													if(myName == reviewName[i]) { %>
+													<!-- <a href="javascript:reviewedit('<%= reviewReview[i] %>')">수정</a> -->
+													<a style=" color: red; "
+														href="/src/buyer/review/reviewDelete?userNum=<%=userNum%>&productNum=<%=productNum%>">삭제</a>
+													<% } %>
+												</td>
+											</tr>
+
+											<% } %>
+
+										</table>
+
+										<!-- <div class="review__ratings__type d-flex">
+
+										</div> -->
+
+
+
+									</div>
+
+
+									<%
+									if(typeof userAuth == 'undefined' || userAuth.length == 0 || userAuth==2){
+										%>
+
+									<hr style="margin:10px">
+									<h4>리뷰를 작성하려면 구매자로 <a href="/src/userManagement/login"><i>로그인</i></a>을 해주세요!<h4>
+
+											<%
+									} else {
+										%>
+
+											<div class="review-fieldset">
+												<h3><%=productName%> 에 대한 리뷰를 달아주세요:</h3>
+												<div class="review-field-ratings">
+													<div class="product-review-table">
+														<div class="review-field-rating d-flex">
+
+
+														</div>
+
+													</div>
+												</div>
+												<div class="review_form_field">
+													<div class="input__box">
+														<span id="here">리뷰 작성</span>
+														<form name="reviewform" action="/src/buyer/review/reviewInsert"
+															method="post">
+
+															<!-- <input name="productStars" type="number" max="5" min="0" value="3"> -->
+
+
+															<style>
+																* {
+																	margin: 0;
+																	padding: 0;
+																}
+
+																.rate {
+																	float: left;
+																	height: 46px;
+																	padding: 0 10px;
+																}
+
+																.rate:not(:checked)>input {
+																	/* position: absolute;
+														top: -9999px; */
+																	display: none;
+																}
+
+																.rate:not(:checked)>label {
+																	float: right;
+																	width: 1em;
+																	overflow: hidden;
+																	white-space: nowrap;
+																	cursor: pointer;
+																	font-size: 30px;
+																	color: #ccc;
+																}
+
+																.rate:not(:checked)>label:before {
+																	content: '★ ';
+																}
+
+																.rate>input:checked~label {
+																	color: #ffc700;
+																}
+
+																.rate:not(:checked)>label:hover,
+																.rate:not(:checked)>label:hover~label {
+																	color: #deb217;
+																}
+
+																.rate>input:checked+label:hover,
+																.rate>input:checked+label:hover~label,
+																.rate>input:checked~label:hover,
+																.rate>input:checked~label:hover~label,
+																.rate>label:hover~input:checked~label {
+																	color: #c59b08;
+																}
+
+																/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+															</style>
+															<div class="rate">
+																<!-- <button type="button" onclick="javascript:asd()">asdasd</button> -->
+																<input type="radio" id="star5" name="productStars"
+																	value="5" />
+																<label onclick="javascript:asd()" for="star5"
+																	title="5">5 stars</label>
+																<input type="radio" id="star4" name="productStars"
+																	value="4" />
+																<label for="star4" title="4">4 stars</label>
+																<input type="radio" id="star3" name="productStars"
+																	value="3" />
+																<label for="star3" title="3">3 stars</label>
+																<input type="radio" id="star2" name="productStars"
+																	value="2" />
+																<label for="star2" title="2">2 stars</label>
+																<input type="radio" id="star1" name="productStars"
+																	value="1" />
+																<label for="star1" title="1">1 star></label>
+																<input type="radio" id="star0" name="productStars"
+																		value="0" checked  style="display: none;"/>
+															</div>
+															<script>
+																function asd() {
+																	console.log("asd")
+																	var a = document.getElementById('here')
+																	console.log(a)
+																	a.focus();
+																}
+
+															</script>
+
+
+
+
+															<input type="hidden" name="userNum" value="<%=userNum%>">
+															<input type="hidden" name="userName" value="<%=userName%>">
+															<input type="hidden" name="productNum"
+																value="<%=productNum%>">
+															<textarea id="reviewtext" name="productReview"></textarea>
+														</form>
+													</div>
+													<div class="review-form-actions">
+														<button type="button" onclick="review()">리뷰 작성</button>
+														<script>
+															function review() {
+
+																if(reviewform.productStars.value == ''){
+																	reviewform.productStars.value = 0
+																}
+																console.log(reviewform.productStars.value)
+																document.reviewform.submit();
+															}
+														</script>
+													</div>
+												</div>
+											</div>
+
+											<%}%>
+														</div>
+	                        	<!-- End Single Tab Content -->
+	                        </div>
+        				</div>
+						</div>
+      			</div>
+        	</div>
+        </div>
+		<!-- End main Content -->
+
+
+
+		<% include inc-footer %>
+
+
+								</div>
+								<!-- //Main wrapper -->
+
+
+
+								<% include inc-script %>
+</body>
+
+</html>
+<script>
+
+	function reviewedit(text) {
+		reviewtext.innerHTML = text;
+		var offset = $("#reviewtext").offset();
+		$('html, body').animate({ scrollTop: offset.top }, 400);
+	}
+</script>

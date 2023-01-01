@@ -1,0 +1,166 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<input id="chknum" type="hidden" value="<%=basket.length%>">
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+        <% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                            	<h2 class="bradcaump-title"><i class="fas fa-shopping-cart fa-2x"></i></h2>
+                                <nav class="bradcaump-content">
+                                  <span class="brd-separetor">장바구니</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+        <!-- cart-main-area start -->
+        <div class="cart-main-area section-padding--lg bg--white">
+            <div class="container chswhite">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 ol-lg-12">
+                        <h3>장바구니 목록</h3><br>
+                        <form action="#">
+                            <div class="table-content wnro__table table-responsive">
+                                <table>
+                                    <colgroup>
+                                        <col width="3%">
+                                        <col width="2%">
+                                        <col width="2%">
+                                        <col width="2%">
+                                        <col width="2%">
+                                        <col width="1%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr class="title-top">
+                                            <th class="product-name" >상품</th>
+                                            <th class="product-price">가격</th>
+                                            <th class="product-quantity">수량</th>
+                                            <th class="product-subtotal">가격합</th>
+                                            <th class="product-remove">삭제</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+																			<%
+																			if(basket.length==0){
+																				%>
+																				<tr><td colspan="6">추가된 상품이 없습니다!</td></tr>
+
+																				<%
+																			}
+																			%>
+
+																			<%
+
+																			console.log(basket)
+																			let total = 0
+
+																			for(var i=0;i<basket.length;i++){
+
+																				let totalp = basket[i].productPrice * basket[i].productCount
+																				total += totalp
+																				%>
+
+	                                        <tr>
+	                                            <td class="product-thumbnail"><a href="/src/buyer/show?productNum=<%=basket[i].productNum%>"><img style="-webkit-border-radius: 500px;" src="/images/main/<%=basket[i].productImage%>" alt="product img" width="100px"><br><br><h5><%=basket[i].productName%></h5></a></td>
+	                                            <td class="product-price"><span class="amount"><%=basket[i].productPrice%></span></td>
+	                                            <td class="product-quantity"><input type="number" value="<%=basket[i].productCount%>" disabled ></td>
+	                                            <td class="product-subtotal"><%=totalp%></td>
+
+
+	                                            <td class="product-name"><a onclick="drop('<%=basket[i].productNum%>')"><i class="fas fa-window-close" aria-hidden="true"></i></a></td>
+
+	                                        </tr>
+																				<%
+
+																			}
+																			%>
+
+
+																			<script>
+																				function drop(productNum){
+																					document.form2.productNum.value = productNum;
+																					console.log(document.form2.productNum)
+																					console.log(document.form2.productNum.value)
+																					document.form2.submit()
+																				}
+																			</script>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+
+												<form name="form2" method="post" action="/src/buyer/basket/drop">
+													<input type="hidden" name="productNum" value="">
+												</form>
+                        <!-- <div class="cartbox__btn">
+                            <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
+
+                                <li><a href="#">Check Out</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-6">
+                        <div class="cartbox__total__area">
+
+                            <div class="cartbox-total d-flex justify-content-between">
+                                <ul class="cart__total__list">
+                                    <li>가격</li>
+                                </ul>
+                                <ul class="cart__total__tk">
+                                    <li><%=total%>원</li>
+                                </ul>
+                            </div>
+
+                            <div class="cart__total__amount">
+                                    <a href="javascript:checkout()"><span><b>주문하러 가기</b></span></a>
+                                    <script>
+                                            function checkout(){
+      
+                                              var chk = chknum.value;
+                                              if(chk == '0'){
+                                                  alert('장바구니에 제품이 없습니다.')
+                                              }else{
+                                                  location.href = '/src/buyer/basket/buy/confirm'
+                                              }
+                                            }
+                                            </script>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- cart-main-area end -->
+		<!-- Footer Area -->
+
+		<% include inc-footer %>
+
+	</div>
+	<!-- //Main wrapper -->
+
+    <% include inc-script %>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+// stars = 0
+
+console.log(related_keywords)
+console.log(product_url)
+%>
+
+<script>
+	var url = window.location.search.substring(1);
+	var enc = decodeURI(url);
+	var hello = enc.split('=',2)
+	
+	console.log(hello[1])
+	</script>
+	
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+
+		<% include inc-header %>
+
+		<style>
+			.bg-image--3{
+				background-image: url('/images/bg/search.png');
+			}
+			</style>
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-search fa-2x"></i></h2>
+							<nav class="bradcaump-content">
+							<span class="brd-separetor">검색 결과</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<div class="row" style="height: 30px;border: 1px solid #d3ced2;"></div>
+		<!-- <div class="row" style="height: 80px;;"></div> -->
+		<!-- Start Shop Page -->
+		<div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
+			<div class="container chswhite">
+				<div class="row">
+
+					<div class="col-lg-12 col-12 order-1 order-lg-2">
+						<div class="row">
+
+							<div class="col-lg-12 mb-2">
+								<div class="row ">
+									<div class="col-3" style=" text-align-last: right; ">
+										<b>연관 검색어</b>
+									</div>
+									<div class="col-9">
+										<ul class="d-flex">
+											<%
+											for(var i=0;i<product_url.length;i++){
+												%>
+											<a href="#"><li style=" margin: 0px 20px; "><%=related_keywords[i]%></li></a>
+											<!-- <a href="<%=product_url[i]%>"><li style=" margin: 0px 20px; "><%=related_keywords[i]%></li></a> -->
+												
+												<%
+											}
+											%>
+										</ul>
+										<div class="row" style=" color: orange; "><br>
+											<i  style=" margin: 0px 10px; " class="fas fa-brain"></i> 국내 탑 쇼핑몰의 구매패턴을 분석하여 연관검색을 추천합니다.
+											<br>
+											
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div
+									class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
+									<div class="shop__list nav justify-content-center" role="tablist">
+										<p id="chschs"></p>
+										<!-- <a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a> -->
+									</div>
+									<p><%=product.length%> results</p>
+									<!-- <div class="orderby__wrapper">
+			                        	<span>Sort By</span>
+			                        	<select class="shot__byselect">
+			                        		<option>Default sorting</option>
+			                        		<option>HeadPhone</option>
+			                        		<option>Furniture</option>
+			                        		<option>Jewellery</option>
+			                        		<option>Handmade</option>
+			                        		<option>Kids</option>
+			                        	</select>
+			                        </div> -->
+								</div>
+							</div>
+						</div>
+						<div class="tab__container">
+							<div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
+								
+								<div class="row" style=" justify-content: center; ">
+									<%
+											console.log(product)
+											for(var i=0;i<product.length;i++){
+												%>
+									<!-- Start Single Product -->
+									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12"
+										style="max-width: 270px;padding: 0px 25px;">
+										<div class="product__thumb">
+											<a class="first__img"
+												href="/src/buyer/show?productNum=<%=product[i].productNum%>"><img
+													style="-webkit-border-radius: 500px; width: 220px; height: 220px;  "
+													src="/images/main/<%=product[i].productImage%>"
+													alt="product image"></a>
+											<!-- <a class="second__img animation1" href="/product-detail"><img src="/images/books/2.jpg" alt="product image"></a> -->
+											<!-- <div class="hot__box">
+													<span class="hot-label">BEST SALLER</span>
+												</div> -->
+										</div>
+										<div class="product__content content--center">
+											<h4><a
+													href="/src/buyer/show?productNum=<%=product[i].productNum%>"><%=product[i].productName%></a>
+											</h4>
+											<ul class="prize d-flex">
+												<li><%=product[i].productPrice%>원</li>
+												<!-- <li class="old_prize">$35.00</li> -->
+											</ul>
+											<!-- <div class="action">
+												<div class="actions_inner">
+													<ul class="add_to_links">
+														<li><a class="cart" href="/src/"><i
+																	class="bi bi-shopping-bag4"></i></a></li>
+
+													</ul>
+												</div>
+											</div> -->
+											<div class="product__hover--content">
+														<%=product[i].productText%>
+														<ul class="rating d-flex">
+															<%
+															var star = parseInt(stars[i]) ;
+															for(var j = 0;j<star;j++){
+															%>
+				
+														<li class="on"><i class="fa fa-star-o"></i></li>
+												
+														<%
+														}
+														for(var j =0;j<5-star;j++){
+														%>
+														<li><i class="fa fa-star-o"></i></li>
+														<% } %>
+													</ul>
+												</div>
+										</div>
+									</div>
+									<!-- End Single Product -->
+
+									<%
+									}
+									
+									if(product.length == 0){
+									%>
+
+									<div class="noresult">
+										
+										<h4><i class="fas fa-exclamation-triangle"></i> 검색결과가 없습니다.</h4><br>
+
+										<p>
+										‘<span id="keyword"></span>’ 에 대한 PIS 내 검색 결과가 없습니다.<br>
+
+										빅데이터 기반의 인기제품 추천 및 국내 탑 쇼핑몰의 <br>
+              							쇼핑 패턴을 분석하여 고객님들께 인기제품을 추천해 드립니다.<br>
+										연관 검색어를 확인하세요
+
+										
+																				</p>
+										
+									</div>
+									<%}%>
+
+
+									<!-- <검색기능>
+대분류 검색 : 봄,여름,가을,겨울 대분류로 검색해드립니다.
+
+키워드 검색 : 빅데이터 기반의 인기제품 추천 및 국내 탑 쇼핑몰의 
+              쇼핑 패턴을 분석하여 고객님들께 인기제품을 추천해 드립니다.
+
+이미지 검색 : 키워드를 까먹어서 검색하기 어려우셨던적 있으신가요?
+              저희 PIS에서는 인공지능 이미지 인식 기능을 사용하여
+              고객님의 제품을 검색해드립니다. -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Shop Page -->
+
+
+
+		<% include inc-footer %>
+
+	</div>
+	<!-- //Main wrapper -->
+
+	<% include inc-script %>
+
+	<script>
+		chschs.innerHTML = hello[1] + ' 키워드에 대한 상품목록입니다. '
+
+		keyword.innerHTML = hello[1] 
+	</script>
+</body>
+
+</html>

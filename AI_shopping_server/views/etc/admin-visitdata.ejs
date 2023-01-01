@@ -1,0 +1,170 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+		
+		<% include inc-header %>
+		
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                        	<h2 class="bradcaump-title">My Account</h2>
+                            <nav class="bradcaump-content">
+                              <a class="breadcrumb_item" href="index.html">Home</a>
+                              <span class="brd-separetor">/</span>
+                              <span class="breadcrumb_item active">My Account</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- End Bradcaump area -->
+		
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+				<div class="container">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ol-lg-12">
+								<div class="row">
+									<div class="col-md-6">
+
+										<h3>오늘 방문 그래프</h3>
+											<div class="card-body">
+													<div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+													<canvas id="myAreaChart" style="display: block; width: 758px; height: 320px;" width="758" height="320" class="chartjs-render-monitor"></canvas>
+													</div>
+													<hr>
+												</div>
+									</div>
+
+									<div class="col-md-6">
+
+										<h3>누적 방문 그래프</h3>
+											
+											<div class="card-body">
+													<div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+													<canvas id="myAreaChart" style="display: block; width: 758px; height: 320px;" width="758" height="320" class="chartjs-render-monitor"></canvas>
+													</div>
+													<hr>
+												</div>
+									</div>
+							</div>
+
+
+								<div class="mt-5">
+										<h3>사용자별 방문 횟수</h3>
+
+										<div class="card-body">
+												<div class="table-responsive">
+												<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+													<div class="row">
+														<div class="col-sm-12 col-md-11">
+														
+														</div>
+														<!-- <div class="col-sm-12 col-md-11">
+															<div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
+																		class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
+														</div> -->
+													</div>
+													<div class="row">
+														<div class="col-sm-12">
+															<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+																aria-describedby="dataTable_info" style="width: 100%;">
+													<thead>
+														<tr role="row">
+															<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending"
+																aria-label="Name: activate to sort column descending" style="width: 27px;">Name</th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-label="Position: activate to sort column ascending" style="width: 90px;">Count</th>
+															
+														</tr>
+													</thead>
+
+													<tr role="row" class="odd">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+														
+													<tr role="row" class="even">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+															
+													<tr role="row" class="odd">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+														
+													<tr role="row" class="even">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+															
+													<tr role="row" class="odd">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+														
+													<tr role="row" class="even">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+															
+													<tr role="row" class="odd">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+														
+													<tr role="row" class="even">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+															
+													<tr role="row" class="odd">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+														
+													<tr role="row" class="even">
+															<td class="sorting_1"> </td>
+															<td> </td>
+														</tr>
+																  
+															
+													 </tbody>
+												  </table></div></div>
+												  
+												</div>
+											  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+		</section>
+		<!-- End My Account Area -->
+		
+		<% include inc-footer %>
+		
+		
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+	<script src="Chart.min.js"></script>
+	<script src="chart-area-demo.js"></script>
+	
+</body>
+</html>

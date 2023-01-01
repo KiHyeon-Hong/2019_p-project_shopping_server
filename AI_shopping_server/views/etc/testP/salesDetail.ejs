@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<h1>제품수정</h1>
+<hr>
+<form method=post enctype="multipart/form-data">
+  제품명<input type=text name=productName value=<%=product_result.productName %> /><br>
+  제품이미지
+  <img src="/images/main/<%=product[i].productImage %>" width="180" height="120"/><br>
+  <input type="file" name="main" /><br>
+  대분류<input type=text name=productCategory value=<%=product_result.productCategory %>/><br>
+  가격 <input type=text name=productPrice value=<%=product_result.product %>/><br>
+  제품상세이미지
+  <img src="/images/main/<%=product[i].productDetail %>" width="180" height="120"/><br>
+  <input type="file" name="detail"/><br>
+  제품상세설명 <input type=text name=productText value=<%=product_result.productText %>/><br>
+  <input type=submit value=제품수정 /><br>
+</form>
+</body>
+</html>

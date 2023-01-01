@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  </head>
+  <body>
+<h1>유저목록</h1>
+<hr>
+
+<% for(var i=0;i<userNum.length;i++){ %>
+  <% if(userAuth[i] == "1") { %>
+    <a href='/src/admin/userManagement/detail?userNum=<%=userNum[i]%>'><%=userNum[i]%></a><br>
+  <% } else { %>
+    <a href='/src/admin/sellerManagement/detail?userNum=<%=userNum[i]%>'><%=userNum[i]%></a><br>
+  <% } %>
+    유저명 <%=userName[i]%><br>
+    ID <%=userId[i]%><br>
+    PHONE <%=userPhone[i]%><br>
+    ADDR <%=userAddr[i]%><br>
+    <%=userAuth[i]%>
+    <% if(userSex[i] == "0") { %>
+      남<br>
+    <% } else { %>
+      여<br>
+    <% } %>
+    <% if(userAuth[i] == "1") { %>
+      <a href='/src/admin/userManagement/basket?userNum=<%=userNum[i] %>'>주문내역</a>
+      <a href='/src/admin/userManagement/delete?userNum=<%=userNum[i] %>'>사용자삭제</a>
+    <% } else { %>
+      <a href='/src/admin/sellerManagement/delete?userNum=<%=userNum[i] %>'>판매자삭제</a>
+    <% } %>
+    <br><br><br><br><br>
+<% } %>
+</body>
+</html>

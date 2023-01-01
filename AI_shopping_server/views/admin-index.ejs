@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<style>
+.card { transition: all .2s ease-in-out;
+
+    text-align-last: center;
+
+ }
+.card:hover { 
+	background-color: rgba(200,200,200,0.1);
+	transform: scale(1.02);
+ }
+</style>
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--7">
+				<div class="container ">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="bradcaump__inner text-center">
+								<h2 class="bradcaump-title"><i class="fas fa-user-cog fa-2x"></i></h2>
+								<nav class="bradcaump-content">
+								  <span class="brd-separetor">메뉴</span>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Bradcaump area -->
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white" >
+			<div class="container chswhite mb-5" style=" height: 600px; ">
+
+				<div class="row mt-2">
+
+						<div class="col-lg-12 col-12">
+							<h2 class="mb-5">Admin menu </h2>
+
+							<div class="container-fluid mt-4">
+									<!-- Page Heading -->
+									<!-- Content Row -->
+									<div class="row" style="justify-content: center;">
+							<%
+
+							var menustr=["메인화면 관리","제품등록 관리","사용자리뷰 관리","판매자 관리", "구매자 관리", "매출 관리","마케팅 관리","이미지 검색 관리","키워드 추천 관리"]
+							var menulink=["/src/admin/mainPageManagement","/src/admin/productManagement","/src/admin/productList","/src/admin/sellerManagement","/src/admin/userManagement", "/src/admin/salesManagement","/src/admin/marketing","/src/admin/imageSearchManagement","/src/admin/keywordManagement"]
+							%>
+											<% for(var i=0;i<menustr.length;i++){%>
+											<div class="card mb-5 mr-2 py-3 col-3 border-left-primary ">
+												<a href="<%=menulink[i]%>">
+													<div class="card-body box4">
+													  <%=menustr[i]%>
+													</div>
+												</a>
+										  </div>
+											<%}%>
+									</div>
+								  </div>
+						</div>
+				</div>
+			</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+
+</body>
+</html>

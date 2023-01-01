@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+var strpass ="비밀번호 찾기"
+var strid = '아이디 찾기'
+var strreg = '회원가입'
+%>
+
+<style>
+.bg-image--9{
+	background-image: url('/images/bg/3.jpg');
+}
+</style>
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--9">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                        	<h2 class="bradcaump-title"><i class="fas fa-sign-in-alt fa-2x"></i></h2>
+                            <nav class="bradcaump-content">
+                              <span class="brd-separetor">로그인</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+			<div class="container chswhite">
+				<div class="row" style=" place-content: center; ">
+					<div class="col-lg-6 col-12">
+						<div class="my__account__wrapper">
+							<h3 class="account__title">로그인</h3>
+							<form method="POST">
+								<div class="account__form">
+
+									<div class="input__box">
+										<label>ID <span>*</span></label>
+										<input name="userId" type="text" maxlength="15">
+									</div>
+									<div class="input__box">
+										<label>비밀번호<span>*</span></label>
+										<input name="userPass" type="password" maxlength="15">
+									</div>
+									<div class="form__btn mb-5">
+										<button>Login</button>
+										<!-- <label class="label-for-checkbox">
+											<input id="rememberme" class="input-checkbox" name="rememberme" value="forever" type="checkbox">
+											<span>Remember me</span>
+										</label> -->
+									</div>
+									<span style="color: #F44336;"><%= msg %></span>
+									<a class="forget_pass" href="/src/userManagement/idFind"><%=strid%></a>
+									<a class="forget_pass" href="/src/userManagement/passFind"><%=strpass%></a>
+									<a class="forget_pass" href="/src/userManagement/register"><%=strreg%></a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+
+	<% include inc-script %>
+
+
+</body>
+</html>

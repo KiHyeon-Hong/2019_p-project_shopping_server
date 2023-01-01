@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+	<body>
+		<!-- Main wrapper -->
+		<div class="wrapper" id="wrapper">
+
+			<% include inc-header %>
+
+			<!-- Start Bradcaump area -->
+			<div class="ht__bradcaump__area bg-image--7">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="bradcaump__inner text-center">
+								<h2 class="bradcaump-title"><i class="fas fa-keyboard fa-2x"></i></h2>
+								<nav class="bradcaump-content">
+									<span class="brd-separetor">추천 키워드 관리</span>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Bradcaump area -->
+			<!-- Start main Content -->
+			<div class="maincontent bg--white pt--80 pb--55">
+				<div class="container chswhite mb-5">
+					<h3>추천 키워드 관리</h3>
+
+					<%
+					console.log( ' asd'+ site)
+					%>
+					<p>
+						현재 크롤링하도록 설정되어 있는 쇼핑몰 : <%=site%>
+					</p>
+
+					<br>
+					<br>
+					<div class="row" style=" justify-content: center; ">
+
+						<div class="col-3" style=" align-self: center; ">
+							<a href="/src/admin/keywordManagement/update?site=11st" ><img src="/images/11st.png"></a>
+						</div>
+						<div class="col-3" style=" align-self: center; ">
+								<a href="/src/admin/keywordManagement/update?site=coupang" > <img src="/images/coupang.png"></a>
+						</div>
+					</div>
+					<div class="row" style="justify-content: center;text-align: -webkit-center;">
+						<div class="col-3" style=" align-self: center; ">
+							11번가로 업데이트하기.
+						</div>
+						<div class="col-3" style=" align-self: center; ">
+							쿠팡으로 업데이트하기.
+						</div>
+
+					</div>
+					<div class="row mt-5"  style=" justify-content: center; ">
+							<h1 style=" color: blue; "><%=msg%></h1>
+
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+
+
+			<% include inc-footer %>
+
+
+
+		</div>
+		<!-- //Main wrapper -->
+
+
+
+		<% include inc-script %>
+
+
+	</body>
+
+</html>

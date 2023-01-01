@@ -1,0 +1,182 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+console.log(genderdata)
+
+genderdata = JSON.stringify(genderdata)
+typedata= JSON.stringify(typedata)
+agedata= JSON.stringify(agedata)
+%>
+
+<input type="hidden" id="genderdata" value="<%=genderdata%>">
+<input type="hidden" id="typedata" value="<%=typedata%>">
+<input type="hidden" id="agedata" value="<%=agedata%>">
+
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+		
+		<% include inc-header %>
+		
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--7">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                            	<h2 class="bradcaump-title"><i class="fas fa-chart-pie fa-2x"></i> <i style=" margin: 0px 20px; " class="far fa-chart-bar fa-2x"></i></h2>
+                                <nav class="bradcaump-content">
+                                  <span class="brd-separetor">마케팅 관리</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- End Bradcaump area -->
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+				<div class="container chswhite mb-5">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ol-lg-12">
+								<h2 class="mb-5">마케팅 관리</h2>
+								<div class="row">
+									<div class="col-md-6">
+
+										<h3>성비</h3>
+										<p style="text-align-last: center;">
+											<i class="fas fa-stop" style=" color: blue; "></i> 남<br>
+											<i class="fas fa-stop" style=" color: pink; "></i> 여
+										</p>
+											<div class="card-body">
+													<div class="chart-pie"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+													<canvas id="myPieChart" style="display: block; width: 758px; height: 320px;" width="758" height="320" class="chartjs-render-monitor"></canvas>
+													</div>
+													<hr>
+												</div>
+									</div>
+
+									<div class="col-md-6">
+
+											<h3>판매자/구매자 비율</h3>
+												
+										<p style="text-align-last: center;">
+											<i class="fas fa-stop" style=" color: gray; "></i> 구매자<br>
+											<i class="fas fa-stop" style=" color: black; "></i> 판매자
+										</p>
+											<div class="card-body">
+													<div class="chart-pie"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+													<canvas id="myPieChart2" style="display: block; width: 758px; height: 320px;" width="758" height="320" class="chartjs-render-monitor"></canvas>
+													</div>
+													<hr>
+												</div>
+										</div>
+										
+							</div>
+							<div class="row mt-5">
+									<div class="col-12">
+	
+											<h3>연령별 사용자 수</h3>
+										<p style="text-align-last: left;">
+												<br>
+												<!-- y : 인원수 -->
+										</p>
+												<div class="card-body">
+														<div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+														<canvas id="myBarChart" style="display: block; width: 758px; height: 320px;" width="758" height="320" class="chartjs-render-monitor"></canvas>
+														</div>
+														<hr>
+													</div>
+													
+										<p style="text-align-last: right;position: absolute;top: +390px;right: 0px;">
+											<!-- x : 연령대 -->
+									</p>
+										</div>
+
+							</div>
+
+
+						</div>
+					</div>
+
+					<hr>
+					<div class="row mt-5">
+						<div>
+
+								<h2>AI기반 인기제품</h2><br>
+								<p>쇼핑몰 홈페이지 빅 데이터 분석을 통하여 사용자가 가장 많이 접속한 제품 순위 분석</p><br>
+						</div>
+
+
+					<div class="col-md-12 col-sm-12 ol-lg-12">
+
+
+						<!-- <table style=" text-align-last: center; ">
+							<tr>
+								<th><a href="/src/buyer/show?productNum=<%=productNum[1]%>"><img style="-webkit-border-radius: 500px;width: 270px;height: 270px;" src="/images/main/<%=productImage[1]%>" alt="product image"><br><span><%=productName[1]%></span><br><%=visitCount[1]%></a></th>
+								<th><a href="/src/buyer/show?productNum=<%=productNum[0]%>"><img style="-webkit-border-radius: 500px;width: 270px;height: 270px;" src="/images/main/<%=productImage[0]%>" alt="product image"><br><span><%=productName[0]%></span><br><%=visitCount[0]%></a></th>
+								<th><a href="/src/buyer/show?productNum=<%=productNum[2]%>"><img style="-webkit-border-radius: 500px;width: 270px;height: 270px;" src="/images/main/<%=productImage[2]%>" alt="product image"><br><span><%=productName[2]%></span><br><%=visitCount[2]%></a></th>
+								
+							</tr>
+						</table> -->
+
+					</div>	
+					
+					<div class="col-md-12 col-sm-12 ol-lg-12">
+
+						<div class="row">
+								<table class="table" style=" text-align-last: center; ">
+										<thead>
+										  <tr>
+											<th scope="col">								<img src="/images/rank/rank.png" width="40px">
+											</th>
+											<th scope="col">상품 </th>
+											<th scope="col">점수 </th>
+										  </tr>
+										</thead>
+										<tbody>
+
+											<%
+											for(var i=0;i<3;i++){
+											%>
+
+											<tr>
+													<th><img src="/images/rank/rank<%=(i+1)%>.png"></td>
+													<td><img
+														style="-webkit-border-radius: 500px;width: 150px;height: 150px" src="/images/main/<%=productImage[i]%>"
+														alt="product image"><br>
+														<%=productName[i]%>
+													</td>
+													<td><%=visitCount[i]%></td>
+												</tr>
+											<%}%>
+										</tbody>
+									  </table>
+						</div>
+					</div>
+					</div>
+		</section>
+		<!-- End My Account Area -->
+		
+		<% include inc-footer %>
+		
+		
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+	<script src="/Chart.min.js"></script>
+	<!-- <script src="chart-area-demo.js"></script> -->
+	<script src="/chart-bar-demo.js"></script>
+	<!-- 성비 -->
+	<script src="/chart-pie-demo.js"></script>
+		<!--유형비  -->
+	<script src="/chart-pie-demo2.js"></script>
+	
+</body>
+</html>

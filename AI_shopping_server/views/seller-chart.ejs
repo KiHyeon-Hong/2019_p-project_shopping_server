@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--4">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-chart-line fa-2x"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">매출 현황</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+
+			<div class="container chswhite">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 ol-lg-12">
+
+
+
+						<div class="row mt-5">
+
+							<h2>일일 매출 현황 & 예측</h2>
+
+							<div class="col-md-12 col-sm-12 ol-lg-12 mt-3">
+								<div class="mb-5">
+
+
+									<table class="table" style=" text-align-last: center; ">
+										<thead>
+											<th class="product-name">어제 매출</th>
+											<th class="product-name">오늘 매출</th>
+											<th class="product-name">내일 예상 매출</th>
+											<th class="product-name">증감</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="product-product"><%=data[data.length - 3]%>원</td>
+												<td class="product-product"><%=data[data.length - 2]%>원</td>
+												<td class="product-product"><span
+														style=" color: red; "><%=data[data.length - 1]%>원</span></td>
+												<td class="product-product">
+													<%=data[data.length - 2] - data[data.length-3]%>원</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+								<div class="card shadow ">
+<%
+labels = JSON.stringify(labels)
+data = JSON.stringify(data)
+%>
+									<input type="hidden" id="data" value="<%=data%>" />
+									<input type="hidden" id="labels" value="<%=labels%>" />
+									<div class="card-body">
+										<div class="chart-area">
+											<div class="chartjs-size-monitor">
+												<div class="chartjs-size-monitor-expand">
+													<div class=""></div>
+												</div>
+												<div class="chartjs-size-monitor-shrink">
+													<div class=""></div>
+												</div>
+											</div>
+											<canvas id="myAreaChart"
+												style="display: block; width: 739px; height: 320px;" width="739"
+												height="320" class="chartjs-render-monitor"></canvas>
+										</div>
+										<hr>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row mt-2">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+	<script src="/Chart.min.js"></script>
+	<script src="/chart-area-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<h1>제품 상세 정보</h1>
+<hr>
+<div>리뷰</div>
+<table>
+<% for(var i = 0; i < reviewName.length; i++) { %>
+  <tr>
+    <td><%=reviewName[i]%></td>
+    <td><%=reviewStars[i]%></td>
+    <td><%=reviewReview[i]%></td>
+    <td><a href="/src/admin/reviewDelete?userNum=<%=userNum[i]%>&productNum=<%=productNum%>">삭제?</a></td>
+  </tr>
+<% } %>
+</table>

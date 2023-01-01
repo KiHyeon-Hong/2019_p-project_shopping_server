@@ -1,0 +1,273 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+console.log(labels)
+console.log(data)
+%>
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+                            	<h2 class="bradcaump-title"><i class="fas fa-info-circle fa-2x"></i></h2>
+                                <nav class="bradcaump-content">
+                                  <span class="brd-separetor"><%=user[0].userName %>님의 상세정보</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+			<div class="container chswhite mb-5">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 ol-lg-12">
+						<h3><%=user[0].userName %>님의 상세정보</h3><br>
+						<form action="#">
+							<div class="table-content wnro__table table-responsive">
+								<table>
+
+									<colgroup>
+										<col width="2%">
+										<col width="2%">
+										<col width="5%">
+										<col width="4%">
+										<col width="2%">
+										<col width="3%">
+									</colgroup>
+									<thead>
+										<tr class="title-top">
+											<!-- <th class="product-thumbnail">Num</th> -->
+											<th class="product-thumbnail">ID</th>
+											<th class="product-thumbnail">이름</th>
+											<th class="product-thumbnail">주소</th>
+											<th class="product-thumbnail">전화번호</th>
+											<th class="product-thumbnail">성별</th>
+											<th class="product-thumbnail">생일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% for(var i=0;i<1;i++){ %>
+										<tr>
+											<!-- <td class="product-price"><span class="amount"><%=user[0].userNum %></span></td> -->
+											<td class="product-price"><%=user[0].userId %></td>
+											<td class="product-price"><%=user[0].userName %></td>
+											<td class="product-price"><%=user[0].userAddr %></td>
+											<td class="product-price"><%=user[0].userPhone %></td>
+											<% if(user[0].userSex == "0") { %>
+												<td class="product-price">남</td>
+											<% } else { %>
+												<td class="product-price">여</td>
+											<% } %>
+												<td class="product-price"><%=user[0].userBirth %></td>
+										</tr>
+
+										<% } %>
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+
+
+						<div class="mt-5">
+						</div>
+					</div>
+
+
+					<div class="col-md-12 col-sm-12 ol-lg-12 mt-3">
+
+							<form action="#">
+									<div class="table-content wnro__table table-responsive">
+
+									<table>
+										<thead>
+											<th class="product-name">어제 매출</th>
+											<th class="product-name">오늘 매출</th>
+											<th class="product-name">내일 예상 매출</th>
+											<th class="product-name">증감</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%
+											var kyakya = isNaN(data[data.length - 1]) ? '거래 데이터가 부족합니다.' : data[data.length - 1]+'원'
+											%>
+											<tr>
+												<td class="product-product"><%=data[data.length - 3]%>원</td>
+												<td class="product-product"><%=data[data.length - 2]%>원</td>
+												<td class="product-product"><span style=" color: red; "><%=kyakya%></span></td>
+												<td class="product-product"><%=data[data.length - 2] - data[data.length-3]%>원</td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+									</form>
+
+							<div class="card shadow ">
+<%
+labels = JSON.stringify(labels)
+data = JSON.stringify(data)
+%>
+									<input type="hidden" id="data" value="<%=data%>" />
+									<input type="hidden" id="labels" value="<%=labels%>" />
+									<!-- <div class="card-header py-3">
+									  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+									</div> -->
+									<div class="card-body">
+									  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+										<canvas id="myAreaChart" style="display: block; width: 739px; height: 320px;" width="739" height="320" class="chartjs-render-monitor"></canvas>
+									  </div>
+									  <hr>
+									</div>
+								  </div>
+
+						</div>
+				</div>
+
+				<div class="row">
+						<div class="col-md-12 col-sm-12 ol-lg-12">
+
+
+
+								<div class="m-5"></div>
+
+								<h4 class=" mt-3">판매 목록</h4>
+								<form action="#">
+									<div class="table-content wnro__table table-responsive">
+										<table>
+
+											<colgroup>
+												<col width="5%">
+												<col width="2%">
+												<col width="2%">
+												<col width="1%">
+												<col width="1%">
+											</colgroup>
+											
+											<thead>
+												<tr class="title-top">
+													<!-- <th style="width: 22px;" class="product-thumbnail">Image</th> -->
+													<th class="product-name">상품</th>
+													<th class="product-name">분류</th>
+													<th class="product-price">가격</th>
+													<th class="product-name" colspan="2">리뷰보기 / 삭제</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% for(var i=page*5-5; i<page*5;i++){ %>
+													<% if(i >= product.length) {
+															break;
+														} %>
+												<tr>
+													<!-- <td class="product-thumbnail"><a href="/src/buyer/show?productNum=<%=product[i].productNum%>">
+															</a>
+													</td> -->
+													<td class="product-name"><a
+															href="/src/buyer/show?productNum=<%=product[i].productNum%>">
+															<img style=" -webkit-border-radius: 500px; "src="/images/main/<%=product[i].productImage %>" width="100" height="100" /><br>
+															<%=product[i].productName %></a>
+													</td>
+													<td class="product-name"><a
+															href="/src/buyer/show?productNum=<%=product[i].productNum%>"><%=product[i].productCategory %></a>
+													</td>
+													<td class="product-price"><span class="amount"><%=product[i].productPrice %></span></td>
+
+													<td class="product-name"><a
+															href="/src/productManagement/review?productNum=<%=product[i].productNum%>"><i class="far fa-meh-blank" aria-hidden="true"></i></a>
+													</td>
+													<td class="product-name"><a onclick="remove('<%=product[i].productNum%>')"><i class="fas fa-window-close" aria-hidden="true"></i></a></td>
+												</tr>
+
+												<% } %>
+
+												<script>
+													function remove(n) {
+														result = confirm("정말로 삭제하시겠습니까?")
+
+														if (result) {
+															location.href = '/src/productManagement/drop?productNum=' + n
+														}
+														else return;
+													}
+												</script>
+
+											</tbody>
+										</table>
+									</div>
+								</form>
+								<div class="cartbox__btn">
+									<div class="row">
+										<div class="col-sm-12 col-md-5">
+											<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"> <%=product.length%>
+												entries
+											</div>
+										</div>
+										<div class="col-sm-12 col-md-7">
+											<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+												<ul class="pagination">
+													<% if(page == 1) { %>
+														<li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="/src/admin/sellerManagement/detail?userNum=<%=user[0].userNum%>&page=<%=parseInt(page)-1%>"
+																aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+													<% } else { %>
+														<li class="paginate_button page-item previous" id="dataTable_previous"><a href="/src/admin/sellerManagement/detail?userNum=<%=user[0].userNum%>&page=<%=parseInt(page)-1%>"
+																aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+													<% } %>
+													</li>
+
+
+													<%
+																								for(var i=1;i<product.length/5 + 1;i++){
+																									%>
+													<li class="paginate_button page-item "><a href="/src/admin/sellerManagement/detail?userNum=<%=user[0].userNum%>&page=<%=i%>" aria-controls="dataTable"
+															data-dt-idx="<%=i%>" tabindex="0" class="page-link"><%=i%></a></li>
+													<%
+																								}
+																								// console.log((Math.floor(asdproduct.length/5) + 1))
+																								%>
+													<% if(parseInt(page) == (Math.floor(product.length/5) + 1)) { %>
+														<li class="paginate_button page-item next disabled" id="dataTable_next"><a href="/src/admin/sellerManagement/detail?userNum=<%=user[0].userNum%>&page=<%=parseInt(page)+1%>"
+																aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+													<% } else { %>
+														<li class="paginate_button page-item next" id="dataTable_next"><a href="/src/admin/sellerManagement/detail?userNum=<%=user[0].userNum%>&page=<%=parseInt(page)+1%>"
+																aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+													<% } %>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+				</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+	<script src="/Chart.min.js"></script>
+	<script src="/chart-area-demo.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+
+
+<%
+console.log(name)
+%>
+
+<input type="hidden" id="shopname" value="<%=name%>">
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+				<style>
+				.bg-image--1 {
+			    background-image: url('/images/bg/<%=bg[0]%>');
+				}
+				.bg-image--2 {
+			    background-image: url('/images/bg/<%=bg[1]%>');
+				}
+				.bg-image--3 {
+			    background-image: url('/images/bg/<%=bg[2]%>');
+				}
+				.bg-image--4 {
+			    background-image: url('/images/bg/<%=bg[3]%>');
+				}
+				.slider--15 .slide .slider__content  h2{
+					text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white !important;
+				}
+				.fullscreen{
+					min-height:65vh;
+				}
+				</style>
+        <!-- Start Slider area -->
+        <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme" >
+        	<!-- Start Single Slide -->
+	        <div class="slide animation__style10 bg-image--1 fullscreen align__center--left">
+	            <div class="container">
+	            	<div class="row">
+	            		<div class="col-lg-12">
+	            			<div class="slider__content">
+		            			<div class="contentbox">
+									<!-- Let's find by image from here. -->
+		            				<h2> <span> Welcome</span> to</h2>
+		            				<!-- <h2><span>Image </span></h2>
+		            				<h2>from <span>Here </span></h2> -->
+		            			</div>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+            </div>
+            <!-- End Single Slide -->
+        	<!-- Start Single Slide -->
+	        <div class="slide animation__style10 bg-image--2 fullscreen align__center--left">
+	            <div class="container">
+	            	<div class="row">
+	            		<div class="col-lg-12">
+	            			<div class="slider__content">
+		            			<div class="contentbox">
+		            				<h2>Search by <span> </span></h2>
+		            				<!-- <h2>favourite <span>Fruit </span></h2>
+		            				<h2>from <span>Here </span></h2> -->
+				                   	<a class="shopbtn" href="/src/buyer/search/image">search now</a>
+				                   	<!-- <a class="shopbtn" href="/src/buyer/search/category?category=봄">shop now</a> -->
+		            			</div>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+            </div>
+            <!-- End Single Slide -->
+        	<!-- Start Single Slide -->
+	        <div class="slide animation__style10 bg-image--3 fullscreen align__center--left">
+	            <div class="container">
+	            	<div class="row">
+	            		<div class="col-lg-12">
+	            			<div class="slider__content">
+		            			<div class="contentbox">
+		            				<h2>Fit  <span> you</span></h2>
+		            				<h2>Perfectly <span> </span></h2>
+		            				<h2> <span> </span></h2>
+				                   	<!-- <a class="shopbtn" href="/src/buyer/search/category?category=봄">shop now</a> -->
+		            			</div>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+            </div>
+            <!-- End Single Slide -->
+        	<!-- Start Single Slide -->
+	        <div class="slide animation__style10 bg-image--4 fullscreen align__center--left">
+	            <div class="container">
+	            	<div class="row">
+	            		<div class="col-lg-12">
+	            			<div class="slider__content">
+		            			<div class="contentbox">
+		            				<h2>Let me  <span>Guess </span></h2>
+		            				<h2>your <span>Profit </span></h2>
+		            				<!-- <h2>from <span>Here </span></h2> -->
+				                   	<!-- <a class="shopbtn" href="/src/buyer/search/category?category=봄">shop now</a> -->
+		            			</div>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+            </div>
+            <!-- End Single Slide -->
+        </div>
+        <!-- End Slider area -->
+		<!-- Start BEst Seller Area -->
+		<section class="wn__product__area brown--color pt--80  pb--30">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section__title text-center">
+							<h2 class="title__be--2">당신을 위한 <span class="color--theme">완벽한 AI기반</span> 추천 상품</h2>
+							<%
+								if(userAuth == ''){
+							%>
+							<p>
+								당신의 소비패턴을 분석하여 관심이 있는 제품 목록입니다. <br>만약 서비스를 제공받고 싶다면 <i><a href="/src/userManagement/login">로그인</a></i> 후 이용해주세요.
+							</p>
+							<%}%>
+							<!-- <p>There are </p> -->
+						</div>
+					</div>
+				</div>
+				<!-- Start Single Tab Content -->
+
+				<style>
+				.product .product__thumb .hot__box::after{
+					display: none;
+				}
+				</style>
+				<div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
+					<!-- Start Single Product -->
+
+					<%
+
+
+					var start = productNum.length-4;
+					console.log("hi" + start)
+
+					if(start<0){
+						start=4
+					}
+					else if(start >=4){
+						start = 4;
+					}
+
+					for(var i=start;i<productNum.length;i++){
+						
+						var tag = 'AD';
+
+						if(i>=4){
+							tag = (i-3) + '위'
+						}
+						var color;
+
+						switch (i) {
+							case 4:
+								color = 'background:#fad52a'
+								break;
+							case 5:
+								color = 'background:#d6d1ba'
+								break;
+							case 6:
+								color = 'background:#cd7f32'
+								break;
+							default:
+								color = 'background:#cb7a59'
+								break;
+						}
+					%>
+
+
+
+					<div class="product product__style--3">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+							<div class="product__thumb">
+								<a class="first__img" href="/src/buyer/show?productNum=<%=productNum[i]%>"><img style="-webkit-border-radius: 500px; width: 270px; height: 270px; "	 src="/images/main/<%=productImage[i]%>" alt="product image"></a>
+								<div class="hot__box" style=<%=color%>>
+									<span class="hot-label" ><%=tag%></span>
+								</div>
+							</div>
+							<div class="product__content content--center">
+								<h4><a href="/src/buyer/show?productNum=<%=productNum[i]%>"><%=productName[i]%></a></h4>
+								<ul class="prize d-flex">
+									<li><%=productPrice[i]%>원</li>
+									<!-- <li class="old_prize">$35.00</li> -->
+								</ul>
+								<div class="action">
+									<div class="actions_inner">
+										<div>
+											
+										</div>
+										<!-- <ul class="add_to_links">
+											<li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
+											<li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+										</ul> -->
+									</div>
+								</div>
+								<div class="product__hover--content">
+									<%=productText[i]%>
+									<ul class="rating d-flex">
+
+
+
+											<%
+											var star = parseInt(stars[i]) ;
+											for(var j = 0;j<star;j++){
+											%>
+
+											<!-- <li><i class="zmdi zmdi-star"></i></li> -->
+											<li class="on"><i class="fa fa-star-o"></i></li>
+
+											<%
+											}
+											for(var j =0;j<5-star;j++){
+											%>
+
+											<li><i class="fa fa-star-o"></i></li>
+										<!-- <li class="off"><i class="zmdi zmdi-star"></i></li> -->
+										<% } %>
+
+										<!-- <li class="on"><i class="fa fa-star-o"></i></li>
+										<li class="on"><i class="fa fa-star-o"></i></li>
+										<li class="on"><i class="fa fa-star-o"></i></li>
+										<li><i class="fa fa-star-o"></i></li>
+										<li><i class="fa fa-star-o"></i></li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<%	
+					}
+					%>
+					<!-- Start Single Product -->
+					
+					</div>
+				</div>
+				<!-- End Single Tab Content -->
+			</div>
+		</section>
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+
+	<script>
+	var timerId;
+	var hi;
+	var interval = 7000
+
+	function StartClock() {
+		timerId = setInterval(PrintTime, interval);
+	}
+
+	function StopClock() {
+		clearInterval(timerId);
+		interval+=1000;
+	}
+
+	function PrintTime() {
+		console.log('hihi')
+		$('.owl-next')[0].click()
+	}
+
+	StartClock()
+
+	 
+	$('div.col-lg-12').click(function(){
+		console.log('초기화')
+		StopClock()
+		StartClock()
+	});
+	$('div.fullscreen').click(function(){
+		console.log('초기화')
+		StopClock()
+		StartClock()
+	});
+	$('div.owl-prev').click(function(){
+		console.log('초기화')
+		StopClock()
+		StartClock()
+	});
+
+	$('div.owl-next').click(function(){
+		console.log('초기화')
+		StopClock()
+		StartClock()
+	});
+
+	$(".fullscreen").hover(function () {
+		StopClock()
+		console.log("자동넘김 중지")
+		}, function () {
+			StartClock()
+			console.log("자동넘김 시작")
+	});
+
+	function changeName(){
+		var name = shopname.value;
+		console.log(name)
+		document.title = name;
+	}
+	changeName()
+
+	</script>
+	<% include inc-script %>
+
+</body>
+</html>

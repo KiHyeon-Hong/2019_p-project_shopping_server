@@ -1,0 +1,301 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%
+data = JSON.stringify(data2)
+%>
+
+<input  type="hidden" id="timetime" value="<%=time2%>">
+
+<style>
+	/** SPINNER CREATION **/
+	.loader {
+		position: relative;
+		text-align: center;
+		margin: 15px auto 35px auto;
+		z-index: 9999;
+		display: block;
+		animation: spin 1s ease-in-out infinite;
+		-webkit-animation: spin 1s ease-in-out infinite;
+	}
+
+	@keyframes spin {
+		to {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+
+	@-webkit-keyframes spin {
+		to {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+</style>
+
+<input type="hidden" id="data" value="<%=data%>">
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-images fa-2x"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">이미지 검색 관리</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container chswhite mb-5">
+				<div class="row" style=" justify-content: center; ">
+					<div class="col-12">
+						<h2>이미지 검색 관리</h2>
+						<br>
+						<br>
+
+					</div>
+					<div class="col-6">
+
+						<h3 style=" text-align-last: center; ">검색 만족도 조회</h3><br>
+						<div style=" text-align: -webkit-center; ">
+						<p style=" text-align: left; width: 60px; ">
+							
+							<i class="fas fa-stop" style=" color: #17a2b8; " aria-hidden="true"></i> 만족<br>
+							<i class="fas fa-stop" style=" color: #dc3545; " aria-hidden="true"></i> 불만족
+						</p></div>
+						<div class="card-body">
+							<div class="chart-pie">
+								<div class="chartjs-size-monitor">
+									<div class="chartjs-size-monitor-expand">
+										<div class=""></div>
+									</div>
+									<div class="chartjs-size-monitor-shrink">
+										<div class=""></div>
+									</div>
+								</div>
+								<canvas id="myPieChart" style="display: block; width: 758px; height: 320px;" width="758"
+									height="320" class="chartjs-render-monitor"></canvas>
+
+							</div>
+							
+						</div>
+						<p style="text-align: -webkit-center;">
+							사용자에 대한 이미지 검색 결과의 만족도를 파악할 수 있습니다.
+						</p>
+					</div>
+
+
+					<%
+					if(time =='0' ){
+					%>
+
+					<div id="chs" class="col-6 mt-5" style="text-align: -webkit-center;">
+
+							<div class="" style="text-align: -webkit-center;">
+
+								<h3>이미지 분류 모델 업데이트</h3><br>
+								<a href="javascript:goupdate()">
+
+								<div style="justify-content: center;text-align: -webkit-center;">
+									<img src="/images/update.png" width=200px; height=200px>
+								</div>
+							</a>
+							<br>
+							<p style=" text-align: center; ">
+								이미지 분류 모델 업데이트 기능입니다.<br><br>
+								이미지 분류 모델은 CNN기반 사전 학습된 신경망에 <br>
+								DNN레이어를 추가한 모델으로 <br>
+								높은 정확도로 제품이미지를 검색해줍니다.
+							</p>
+							</div>
+
+						<script>
+							function goupdate() {
+
+								console.log('goupdate')
+								$('#hello').click();
+
+								sendAjax("/src/admin/imageSearchManagement/update")
+							}
+
+						</script>
+
+
+						<script>
+							function sendAjax(url) {
+								var data = { 'kyakya': 'gg' };
+								// 입력값을 변수에 담고 문자열 형태로 변환
+								data = JSON.stringify(data);
+								console.log(data)
+
+								// content-type을 설정하고 데이터 송신
+								var xhr = new XMLHttpRequest();
+								xhr.open('GET', url);
+								xhr.setRequestHeader('Content-type', "application/json");
+								xhr.send(data);
+
+								// 데이터 수신이 완료되면 표시
+								xhr.addEventListener('load', function () {
+									var result = JSON.parse(xhr.responseText);
+									// 데이터가 없으면 return 반환
+									if (result.result !== 'ok') return;
+									// 데이터가 있으면 결과값 표시
+									document.querySelector(".result").value = result.resultv;
+
+
+									chs.style.display = 'none';
+								});
+							}
+						</script>
+
+					</div>
+
+					<%
+								}else{
+									%>
+
+
+					<script language="JavaScript">
+						var timerID; // 타이머를 핸들링하기 위한 전역 변수
+						var time = 119; // 타이머 시작시의 시간
+
+						/* 타이머를 시작하는 함수 */
+						function start_timer() {
+							time = timetime.value;
+							console.log('hi' + time)
+							timerID = setInterval("decrementTime()", 1000);
+						}
+
+						/* 남은 시간을 감소시키는 함수 */
+						function decrementTime() {
+							var x1 = document.getElementById("time2");
+							// var x2 = document.getElementById("time2");
+							x1.innerHTML = toHourMinSec(time);
+							// x2.innerHTML = toHourMinSec(time);
+
+							if (time > 0) time--;
+							else {
+								// 시간이 0이 되었으므로 타이머를 중지함
+								clearInterval(timerID);
+								// 시간이 만료되고 나서 할 작업을 여기에 작성
+								location.href = '/src/admin/imageSearchManagement'
+							}
+						}
+
+
+						/* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
+						function toHourMinSec(t) {
+							var min;
+							var sec;
+
+							// 정수로부터 남은 시, 분, 초 단위 계산
+							hour = Math.floor(t / 3600);
+							min = Math.floor((t - (hour * 3600)) / 60);
+							sec = t - (hour * 3600) - (min * 60);
+
+							// console.log(sec.toString().substr(0,2))
+
+							// hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+							if (hour < 10) hour = "0" + hour;
+							if (min < 10) min = "0" + min;
+							if (sec < 10) sec = "0" + sec;
+							return (min + ":" + sec.toString().substr(0,2));
+						}
+						start_timer();
+					</script>
+
+					<div id="chs" class="col-6 mt-5" style="justify-content: center;text-align: -webkit-center;">
+
+						<a href="javascript:alert('업데이트 중입니다.')">
+							<div class="col-md-12 mb-5">
+
+								<h3>이미지 분류 모델 업데이트 중</h3>
+								<br>
+								<div id="time2"></div>
+								<!-- <div ></div> -->
+
+								<i class="fas fa-spinner fa-9x loader"></i>
+							</div>
+							<p>
+							</p>
+						</a>
+
+					</div>
+					<%
+						}
+						%>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+			<% include inc-footer %>
+
+		</div>
+		<!-- //Main wrapper -->
+
+		<div class="row" style=" justify-content: center; ">
+			<button id="hello" class="btn btn-default tocart" data-target="#layerpop" data-toggle="modal" type="button"
+				style="display: none;" onclick="javascript:test();">Add to Cart</button>
+
+			<script>
+				function test() {
+					console.log()
+				}
+			</script>
+
+
+
+			<div class="modal fade" id="layerpop">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- header -->
+
+						<div class="modal-header">
+							<h4 class="modal-title">AI server</h4>
+							<!-- 닫기(x) 버튼 -->
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<!-- header title -->
+
+						</div>
+						<!-- body -->
+						<div class="modal-body result" style=" text-align: center; ">
+							<i class="fas fa-spinner fa-10x loader"></i>
+							<!-- <i class="far fa-check-circle fa-10x"></i> -->
+							<br>
+							업데이트를 시작하였습니다. 10분 이후에 완료됩니다.
+						</div>
+						<!-- Footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal"
+								style=" width: 100px; ">네</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<% include inc-script %>
+
+		<script src="/Chart.min.js"></script>
+		<script src="/chart-pie-demo-img.js"></script>
+
+</body>
+
+</html>

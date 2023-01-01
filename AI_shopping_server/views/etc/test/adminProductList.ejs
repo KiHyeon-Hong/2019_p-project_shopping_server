@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  </head>
+  <body>
+<h1>구매 제품 목록</h1>
+<hr>
+
+<% for(var i=0;i<productNum.length;i++){ %>
+    유저 번호 <%=userNum[i] %><br>
+    유저 명 <%=userName[i] %><br>
+    제품 번호: <%=productNum[i] %><br>
+    제품 명: <%=productName[i] %><br>
+    <img src="/images/main/<%=productImage[i] %>" width="180" height="120"/><br>
+    대분류: <%=productCategory[i] %><br>
+    제품 명: <%=productPrice[i] %>
+    <%=productNum[i] %> <%=productNum[i] %> <%=productNum[i] %>
+    <a href='/src/admin/productManagement/submit?productNum=<%=productNum[i] %>'>허용</a>
+    <br><br><br><br><br>
+<% } %>
+</body>
+</html>

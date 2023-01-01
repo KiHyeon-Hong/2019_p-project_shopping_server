@@ -1,0 +1,243 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<%%>
+<html lang="en">
+<head>
+    <title>Bootstrap Colorpicker Example</title>  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>  
+</head>
+<body>
+<input class="form-control" type="text" id="color"/>
+<script>
+    $('#color').colorpicker({});
+</script>
+</body>
+</html>
+<style>
+img {
+    -webkit-filter: opacity(.5) drop-shadow(0 0 0 red);
+    filter: opacity(.5) drop-shadow(0 0 0 red);
+ }
+</style>
+	<body>
+		<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+		<!-- Main wrapper -->
+		<div class="wrapper" id="wrapper">
+
+			<% include inc-header %>
+
+			<!-- Start Bradcaump area -->
+			<div class="ht__bradcaump__area bg-image--7">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="bradcaump__inner text-center">
+								<h2 class="bradcaump-title"><%=title%></h2>
+								<nav class="bradcaump-content">
+									<a class="breadcrumb_item" href="/">Home</a>
+									<span class="brd-separetor">/</span>
+									<span class="breadcrumb_item active"><%=title%></span>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Bradcaump area -->
+			<!-- Start main Content -->
+			<div class="maincontent bg--white pt--80 pb--55">
+				<div class="container">
+					<div class="row" style=" justify-content: center; ">
+                            <button class="btn btn-default tocart" data-target="#layerpop" data-toggle="modal"  type="button"
+                            onclick="javascript:test();">Add to Cart</button>
+
+                            <script>
+                                function test(){    
+                                    console.log()
+                                }
+                            </script>
+
+
+                            
+										<div class="modal fade" id="layerpop" >
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <!-- header -->
+                                                    
+                                                    <div class="modal-header">
+                                                      <h4 class="modal-title">AI server</h4>
+                                                      <!-- 닫기(x) 버튼 -->
+                                                      <button type="button" class="close" data-dismiss="modal">×</button>
+                                                      <!-- header title -->
+
+                                                    </div>
+                                                    <!-- body -->
+                                                    <div class="modal-body result" style=" text-align: center; ">
+                                                            <style>
+                                                                    /** SPINNER CREATION **/
+                                                                    .loader {
+                                                                        position: relative;
+                                                                        text-align: center;
+                                                                        margin: 15px auto 35px auto;
+                                                                        z-index: 9999;
+                                                                        display: block;
+                                                                        animation: spin 1s ease-in-out infinite;
+                                                                        -webkit-animation: spin 1s ease-in-out infinite;
+                                                                    }
+                                                                
+                                                                    @keyframes spin {
+                                                                        to {
+                                                                            -webkit-transform: rotate(360deg);
+                                                                        }
+                                                                    }
+                                                                
+                                                                    @-webkit-keyframes spin {
+                                                                        to {
+                                                                            -webkit-transform: rotate(360deg);
+                                                                        }
+                                                                    }
+                                                                
+                                                                </style>
+
+                                                            <i class="fas fa-spinner fa-10x loader"></i>
+                                                            <!-- <i class="far fa-check-circle fa-10x"></i> -->
+                                                        <br>
+                                                          업데이트를 시작하였습니다. 10분 이후에 완료됩니다.
+                                                    </div>
+                                                    <!-- Footer -->
+                                                    <div class="modal-footer">
+                                                              <button type="button" class="btn btn-primary" data-dismiss="modal" style=" width: 100px; ">네</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+					</div>
+                    <div class="row" style="justify-content: center;text-align: -webkit-center;">
+                        
+
+                        <div id="time1"></div>
+						
+
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+
+
+			<% include inc-footer %>
+
+
+
+		</div>
+		<!-- //Main wrapper -->
+
+
+
+		<% include inc-script %>
+
+
+	</body>
+
+    <script language="JavaScript">
+
+        var timerID; // 타이머를 핸들링하기 위한 전역 변수
+    
+        var time = 119; // 타이머 시작시의 시간
+    
+    
+        start_timer()
+        /* 타이머를 시작하는 함수 */
+    
+        function start_timer() { 
+    
+            timerID = setInterval("decrementTime()", 1000);
+    
+        }
+    
+    
+    
+        /* 남은 시간을 감소시키는 함수 */
+    
+        function decrementTime() { 
+    
+            var x1 = document.getElementById("time1");
+    
+            // var x2 = document.getElementById("time2");
+    
+            x1.innerHTML = toHourMinSec(time);
+    
+            // x2.innerHTML = toHourMinSec(time);
+    
+    
+    
+            if(time > 0) time--;
+    
+            else { 
+    
+                // 시간이 0이 되었으므로 타이머를 중지함
+    
+                clearInterval(timerID);
+    
+    
+    
+                // 시간이 만료되고 나서 할 작업을 여기에 작성
+    
+                document.form.submit(); // 예: 강제로 form 실행
+    
+            }
+    
+        }
+    
+    
+    
+        /* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
+    
+        function toHourMinSec(t) { 
+    
+    
+            var min;
+    
+            var sec;
+    
+    
+    
+            // 정수로부터 남은 시, 분, 초 단위 계산
+    
+            hour = Math.floor(t / 3600);
+    
+            min = Math.floor( (t-(hour*3600)) / 60 );
+    
+            sec = t - (hour*3600) - (min*60);
+    
+    
+    
+            // hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+    
+            if(hour < 10) hour = "0" + hour;
+    
+            if(min < 10) min = "0" + min;
+    
+            if(sec < 10) sec = "0" + sec;
+    
+    
+    
+            return( min + ":" + sec);
+    
+        }
+    
+    </script>
+    
+    
+</html>

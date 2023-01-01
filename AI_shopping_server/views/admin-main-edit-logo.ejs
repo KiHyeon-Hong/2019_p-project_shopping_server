@@ -1,0 +1,225 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title"><i class="fas fa-clone fa-2x" aria-hidden="true"></i></h2>
+							<nav class="bradcaump-content">
+								<span class="brd-separetor">로고 변경</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container chswhite mb-5">
+				<div class="row">
+
+					<div class="col-lg-12 col-12">
+						<h3>로고 변경</h3>
+
+						<form name="editform" method="post" enctype="multipart/form-data">
+							<div class="wn__single__product">
+								<div class="row m-5" style=" justify-content: center; ">
+									<div class="col-6">
+
+										<!-- <label for="hello"
+												style=" padding: 10px; "
+												>쇼핑몰 명</label> -->
+
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-lg-6 col-12">
+										<img id="img1" src="/images/logo/<%=logo%>" width="704px" height="264px" />
+										<input id="input_img" type="file" name="logo" style="display:none" />
+
+									</div>
+									<div class="col-lg-6 col-12" ">
+										<div class="product__info__main">
+
+											<!-- <div class="product__overview">
+											</div>
+
+											<h5 class="mr-2" style=" display: inline; ">색 설정 </h5>
+											<input 	placeholder="클릭하여 색 고르기" class="form-control" name="color"
+												type="text" id="color" value="<%=color%>" style="display: inline;  width: 220px; " />
+
+												<div class="demo">
+													<h1>Bootstrap Colorpicker Demo (with Bootstrap)</h1>
+													<input id="demo-input" type="text" value="rgb(255, 128, 0)" />
+												</div>
+												<script>
+    $(function () {
+      // Basic instantiation:
+      $('#demo-input').colorpicker();
+      
+      // Example using an event, to change the color of the #demo div background:
+      $('#demo-input').on('colorpickerChange', function(event) {
+		  console.log('asda')
+        $('.demo').css('background-color', event.color.toString());
+      });
+    });
+  </script>
+											<script>
+												// $('#color').colorpicker({});
+												// $('#color').on('colorpickerChange', function(event) {
+												// 	console.log('asd')
+												// 	$('#demo').css('background-color', event.color.toString());
+												// });
+
+												
+											</script> -->
+
+											<script>
+												$(function () {
+													// Basic instantiation:
+													$('#color').colorpicker();
+													
+													// Example using an event, to change the color of the #demo div background:
+													$('#color').on('colorpickerChange', function(event) {
+														console.log('asd')
+														// $('#demo').css('background-color', event.color.toString());
+													});
+												});
+											</script>
+											<p>
+												<!-- * 클릭하여 색 고르기 -->
+											</p>
+
+											<br><br><br><br><br>
+											<br>
+											<hr>
+											<p>
+												주의사항 : 로고 이미지는 가급적 PNG형식으로 올려주세요.<br>
+												권장 크기 : 176x66 픽셀
+											</p>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<script>
+								$(document).ready(function () {
+									$('#img1').click(function (e) {
+										e.preventDefault();
+										$('#input_img').click();
+									});
+
+									$("#input_img").on("change", handleImgFileSelect);
+									// $("#color").change(handleCp)
+									// $("#color").on("propertychange change keyup paste input", handleCp);
+								});
+
+
+								function handleImgFileSelect(e) {
+									var files = e.target.files;
+									var filesArr = Array.prototype.slice.call(files);
+
+									filesArr.forEach(function (f) {
+										if (!f.type.match("image.*")) {
+											alert("확장자는 이미지 확장자만 가능합니다.");
+											return;
+										}
+
+										sel_file = f;
+
+										var reader = new FileReader();
+										reader.onload = function (e) {
+											$("#img1").attr("src", e.target.result);
+										}
+										reader.readAsDataURL(f);
+
+									});
+								}
+
+								function handleCp(e) {
+									// console.log(e)
+									var files = e.target.value;
+									console.log('asdsa'+files)
+									return 
+
+									filesArr.forEach(function (f) {
+										if (!f.type.match("image.*")) {
+											alert("확장자는 이미지 확장자만 가능합니다.");
+											return;
+										}
+
+										sel_file = f;
+
+										var reader = new FileReader();
+										reader.onload = function (e) {
+											$("#img1").attr("src", e.target.result);
+										}
+										reader.readAsDataURL(f);
+
+									});
+								}
+							</script>
+
+							<div class="form__btn mt-5">
+								<button type="button" onclick="javascript:document.editform.submit();" style="
+										background-color: #e59285;
+										border-color: #e59285;
+										background: #e59285 none repeat scroll 0 0;
+										border: 0 none;
+										color: #fff;
+										font-size: 14px;
+										font-weight: 600;
+										height: 40px;
+										line-height: 40px;
+										padding: 0 25px;
+										text-transform: uppercase;
+									">적용</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+
+					</div>
+				</div>
+			</div>
+			<!-- End main Content -->
+
+
+
+			<% include inc-footer %>
+
+
+
+		</div>
+		<!-- //Main wrapper -->
+
+
+
+		<% include inc-script %>
+
+
+</body>
+
+</html>

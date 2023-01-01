@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  </head>
+  <body>
+<h1>구매 제품 목록</h1>
+<hr>
+<% for(var i=0;i<deliveryNum.length;i++){ %>
+  <% if(i == 0 || deliveryNum[i-1] != deliveryNum[i]) { %>
+    <br>----------------------------------<br>
+    제품번호: <%=deliveryNum[i] %><br>
+    구매일: <%=deliveryDate[i] %><br>
+    가격: <%=deliveryPrice[i] %><br>
+  <% } %>
+  <img src="/images/main/<%=productImage[i] %>" width="180" height="120"/><br>
+  제품번호: <%=productNum[i] %><br>
+  제품명: <%=productName[i] %><br>
+  제품개수: <%=productCount[i] %><br>
+  제품상태: <%=deliveryState[i] %><br><br><br>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                            	<h2 class="bradcaump-title"><i class="fas fa-shopping-bag fa-2x"></i></h2>
+                                <nav class="bradcaump-content">
+                                  <span class="brd-separetor">주문 완료</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+        <!-- Start Checkout Area -->
+        <section class="wn__checkout__area section-padding--lg bg__white">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-12 col-12 md-mt-40 sm-mt-40">
+
+						<div class="container mb-5" style="
+						text-align: center;
+					">
+							<h2>주문이 완료되었습니다!</h2>
+
+							<img src="/shopping-bag-solid.svg" width="100" style="
+							margin: 10px;
+						">
+						<a href="/src/buyer/buyList">
+							<h3>주문번호 : <%=deliveryNum%></h3></a>
+
+						</div>
+        				<div class="wn__order__box">
+        					<h3 class="onder__title">주문 상품</h3>
+        					<ul class="order__total">
+        						<li>상품</li>
+        						<li>가격</li>
+        					</ul>
+        					<ul class="order_product">
+										<% for(var i=0;i<productName.length;i++){%>
+        						<li><%=productName[i]%> × <%=productCount[i]%><span><%=(productPrice[i])%>원</span></li>
+										<%}%>
+        					</ul>
+        					<!-- <ul class="shipping__method">
+        						<li>Cart Subtotal <span>$48.00</span></li>
+
+        					</ul> -->
+        					<ul class="total__amount">
+        						<li>결제 금액 <span><%=deliveryPrice%>원</span></li>
+        					</ul>
+        				</div>
+
+        			</div>
+        		</div>
+        	</div>
+        </section>
+		<!-- End Checkout Area -->
+
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+
+    <% include inc-script %>
+
+</body>
+</html>

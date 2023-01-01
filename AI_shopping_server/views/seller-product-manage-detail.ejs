@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                        	<h2 class="bradcaump-title"><i class="fas fa-truck fa-2x"></i></h2>
+                            <nav class="bradcaump-content">
+                              <span class="brd-separetor">운송상태 설정</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- End Bradcaump area -->
+
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+			
+				<div class="container chswhite mb-5">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ol-lg-12">
+								<h4><%=product[0].productName %></h4><br>
+								<form action="#">
+									<div class="table-content wnro__table table-responsive">
+										<table>
+											<colgroup>
+												<col width="6%">
+												<col width="4%">
+												<col width="1%">
+												<col width="1%">
+											</colgroup>
+											<thead>
+													<th class="product-name">상품</th>
+													<th class="product-price">가격</th>
+													<th class="product-remove" colspan="2">Edit/Remove</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="product-name"><a href="/src/buyer/show?productNum=<%=product[0].productNum%>"><img src="/images/main/<%=product[0].productImage %>" width="180" height="180" style="-webkit-border-radius: 500px;"/><br><%=product[0].productName %></a></td>
+													<td class="product-price"><span class="amount"><%=product[0].productPrice %></span></td>
+													<td class="product-name"><a href="/src/productManagement/infoChange?productNum=<%=product[0].productNum%>"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
+													<td class="product-name"><a onclick="remove('<%=product[0].productNum%>')" > <i class="fas fa-window-close" aria-hidden="true"></i></a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</form>
+
+
+								<div class="mt-5">
+									<h4>운송상태 설정</h4>
+
+										<div class="card-body">
+												<div class="table-responsive">
+												<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+													<div class="row">
+														<div class="col-sm-12 col-md-11">
+
+														</div>
+														<!-- <div class="col-sm-12 col-md-11">
+															<div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
+																		class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
+														</div> -->
+													</div>
+													<div class="row" style="  height: 400px;">
+														<div class="col-sm-12">
+															<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+																aria-describedby="dataTable_info" style="width: 100%;">
+													<thead>
+														<tr role="row">
+															<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending"
+																aria-label="Name: activate to sort column descending" style="width: 155px;">주문일</th>
+															<!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-label="Office: activate to sort column ascending" style="width: 22px;">userNum</th> -->
+															<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-label="Position: activate to sort column ascending" style="width: 190px;">배송지</th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-label="Age: activate to sort column ascending" style="width: 61px;">수량</th>
+																<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-label="Salary: activate to sort column ascending" style="width: 22px;">가격 </th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-label="Start date: activate to sort column ascending"  style="width: 27px;">운송상태 </th>
+														</tr>
+													</thead>
+
+
+
+
+													<%
+													console.log(delivery)
+
+													for(var i=0;i<delivery.length;i++){
+														var temp = delivery[i].deliveryDate;
+														temp = temp.substring(0,10)
+														%>
+
+
+														<tr role="row" >
+																<td class="sorting_1"><%=temp%> </td>
+																<!-- <td><%=delivery[i].userNum%> </td> -->
+																<td><%=delivery[i].deliveryAddr%> </td>
+																<td><%=delivery[i].productCount%> </td>
+																<td><%=delivery[i].deliveryPrice%> </td>
+																<td>
+																	<div class="dropdown mb-3">
+
+																			<a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink<%=i%>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" min-width: 110px; color:white "> 
+																				 <%=delivery[i].deliveryState%>
+																			</a>
+
+
+																			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+																				<a class="dropdown-item" href="javascript:selectCa(<%=i%>,'<%=product[0].productNum%>','<%=delivery[i].deliveryNum%>','<%=delivery[i].deliveryState%>','결제대기');">결제대기</a>
+																				<a class="dropdown-item" href="javascript:selectCa(<%=i%>,'<%=product[0].productNum%>','<%=delivery[i].deliveryNum%>','<%=delivery[i].deliveryState%>','배송준비');">배송준비</a>
+																				<a class="dropdown-item" href="javascript:selectCa(<%=i%>,'<%=product[0].productNum%>','<%=delivery[i].deliveryNum%>','<%=delivery[i].deliveryState%>','배송중');">배송중</a>
+																				<a class="dropdown-item" href="javascript:selectCa(<%=i%>,'<%=product[0].productNum%>','<%=delivery[i].deliveryNum%>','<%=delivery[i].deliveryState%>','배송완료');">배송완료</a>
+																			</div>
+																	</div>
+																</td>
+															</tr>
+
+																<script type="text/javascript">
+
+																	function selectCa(sel,d1,d2,d3,data){
+																		var temp = $('#dropdownMenuLink'+sel)[0]
+
+																		console.log('??'+d1+' '+d2+' '+d3 +'??')
+
+																		temp.innerHTML = data;
+																		console.log(temp + data)
+																		sendAjax('/src/salesManagement/change',d1,d2,d3,data,sel)
+
+																		}
+
+																	function sendAjax(url, d1,d2,d3,data,sel){
+
+																		var data = {'productNum' : d1, 'deliveryNum' : d2, 'deliveryState' : data};
+																		// 입력값을 변수에 담고 문자열 형태로 변환
+																		data = JSON.stringify(data);
+																		console.log(data)
+
+																		// content-type을 설정하고 데이터 송신
+																		var xhr = new XMLHttpRequest();
+																		xhr.open('POST', url);
+																		xhr.setRequestHeader('Content-type', "application/json");
+																		xhr.send(data);
+
+																		// 데이터 수신이 완료되면 표시
+																		xhr.addEventListener('load', function(){
+																		var result = JSON.parse(xhr.responseText);
+																		// 데이터가 없으면 return 반환
+																		if(result.result !== 'ok') return;
+																		// 데이터가 있으면 결과값 표시
+																			var temp = $('#dropdownMenuLink'+sel)[0]
+																		// temp.innerHTML = result.resultv;
+																		});
+																	}
+																</script>
+
+
+														<%}%>
+
+
+														<script>
+															function remove(n){
+																result = confirm("정말로 삭제하시겠습니까?")
+			
+																if (result) {
+																	location.href = '/src/productManagement/drop?productNum=' + n
+																}
+																else return;
+															}
+														</script>
+													 </tbody>
+												  </table></div></div>
+
+												</div>
+											  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+
+</body>
+</html>

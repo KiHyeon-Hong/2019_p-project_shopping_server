@@ -1,0 +1,193 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<% include inc-head %>
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<% include inc-header %>
+
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area bg-image--7">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner text-center">
+                            	<h2 class="bradcaump-title"><i class="fas fa-check fa-2x"></i></h2>
+                                <nav class="bradcaump-content">
+                                  <span class="brd-separetor">등록 대기 상품</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- End Bradcaump area -->
+
+
+		<!-- Start My Account Area -->
+		<section class="my_account_area pt--80 pb--55 bg--white">
+				<div class="container chswhite">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ol-lg-12">
+<!--
+								<div class="row">
+
+										<div class="col-lg-4 col-md-4 col-sm-6 ">
+												<a href="/src/productManagement/register"
+												style=" border: 2px solid #333; color: #333; display: inline-block; font-size: 12px; padding: 2px 20px 0; ">
+												<h5>+ add new product</h5>
+											</a>
+
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-6">
+												<a href="#"
+													style=" border: 2px solid #333; color: #333; display: inline-block; font-size: 12px; padding: 2px 20px 0; ">
+													<h5><i class="fas fa-chart-line"></i> 일일 매출 현황 보기</h5>
+												</a>
+
+										</div>
+
+
+								</div>
+								 -->
+
+								<div class="m-5"></div>
+
+								<h3 class="account__title mt-3">등록 대기 중인 상품 </h3><br>
+								<form action="#">
+									<div class="table-content wnro__table table-responsive">
+										<table>
+											<colgroup>
+											  <col width="50%"/>
+											  <col width="20%"/>
+											  <col width="20%"/>
+											  <col width="20%"/>
+											</colgroup>
+											<thead>
+												<tr class="title-top">
+													<!-- <th style="width: 22px;" class="product-thumbnail">Num</th> -->
+													<th style="width: 22px;" class="product-thumbnail">상품</th>
+													<th class="product-name">분류</th>
+													<th class="product-price">가격</th>
+													<th class="product-name">승인</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% 
+												if(product.length == 0 ){
+												%>
+												
+													<tr>
+														<td colspan="4"> 등록 대기 상품 없음</td>
+													</tr>
+												<%
+												}
+												else{
+
+													for(var i=page*5-5; i<page*5;i++){ %>
+														<% if(i >= product.length) {
+																break;
+															} 
+												%>
+													<tr>
+														<!-- <td class="product-price"><span class="amount"><%=product[i].productNum %></span></td> -->
+														<td class="product-thumbnail"><a href="/src/buyer/show?productNum=<%=product[i].productNum%>">
+																<img src="/images/main/<%=product[i].productImage %>" width="180" height="120" /><br>
+															<spane><%=product[i].productName %></spane>
+															</a>
+														</td>
+														<td class="product-name"><a
+																href="/src/buyer/show?productNum=<%=product[i].productNum%>"><%=product[i].productCategory %></a>
+														</td>
+														<td class="product-price"><span class="amount"><%=product[i].productPrice %></span></td>
+														<td class="product-price"><span class="amount"><a href='/src/admin/productManagement/submit?productNum=<%=product[i].productNum %>'>
+															<i class="fas fa-check-circle"></i></a></span></td>
+	
+													</tr>
+	
+												
+												<% 
+													} 
+												}
+												%>
+												
+											
+
+												<script>
+													function remove(n) {
+														result = confirm("정말로 삭제하시겠습니까?")
+
+														if (result) {
+															location.href = '/src/productManagement/drop?productNum=' + n
+														}
+														else return;
+													}
+												</script>
+
+											</tbody>
+										</table>
+									</div>
+								</form>
+								<div class="cartbox__btn">
+									<div class="row">
+										<div class="col-sm-12 col-md-5">
+											<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"> <%=product.length%>
+												entries
+											</div>
+										</div>
+										<div class="col-sm-12 col-md-7">
+											<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+												<ul class="pagination">
+													<% if(page == 1) { %>
+														<li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="/src/admin/productManagement?page=<%=parseInt(page)-1%>"
+																aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+													<% } else { %>
+														<li class="paginate_button page-item previous" id="dataTable_previous"><a href="/src/admin/productManagement?page=<%=parseInt(page)-1%>"
+																aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+													<% } %>
+													</li>
+
+
+													<%
+																								for(var i=1;i<product.length/5 + 1;i++){
+																									%>
+													<li class="paginate_button page-item "><a href="/src/admin/productManagement?page=<%=i%>" aria-controls="dataTable"
+															data-dt-idx="<%=i%>" tabindex="0" class="page-link"><%=i%></a></li>
+													<%
+																								}
+																								%>
+													<% if(parseInt(page) == (Math.floor(product.length/5)+1)) { %>
+														<li class="paginate_button page-item next disabled" id="dataTable_next"><a href="/src/admin/productManagement?page=<%=parseInt(page)+1%>"
+																aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+													<% } else { %>
+														<li class="paginate_button page-item next" id="dataTable_next"><a href="/src/admin/productManagement?page=<%=parseInt(page)+1%>"
+																aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+													<% } %>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+		</section>
+		<!-- End My Account Area -->
+
+		<% include inc-footer %>
+
+
+	</div>
+	<!-- //Main wrapper -->
+	<% include inc-script %>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  </head>
+  <body>
+<h1>유저 상세 목록</h1>
+<hr>
+
+<% for(var i=0;i<userNum.length;i++){ %>
+    <%=userNum[i]%></a><br>
+    유저명 <%=userName[i]%><br>
+    ID <%=userId[i]%><br>
+    PHONE <%=userPhone[i]%><br>
+    ADDR <%=userAddr[i]%><br>
+    <% if(userAuth[i] == '0') { %>
+      남<br>
+    <% } else { %>
+      여<br>
+    <% } %>
+    <br><br><br><br><br>
+<% } %>
+</body>
+</html>
